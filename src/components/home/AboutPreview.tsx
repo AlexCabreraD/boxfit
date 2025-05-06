@@ -20,7 +20,7 @@ const AboutPreview = () => {
     },
     {
       icon: <FiGlobe size={24} className="text-boxing-red" />,
-      title: "Latinx-Owned",
+      title: "Latino-Owned",
       description: "Proud to represent diversity in the boxing community",
     },
   ];

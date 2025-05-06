@@ -176,7 +176,7 @@ const Footer = () => {
           <p>
             &copy; {new Date().getFullYear()} BoxFit Utah. All rights reserved.
           </p>
-          <p className="mt-1">Latinx-owned business established in 2020.</p>
+          <p className="mt-1">Established in 2020.</p>
         </div>
       </div>
     </footer>
