@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { FiChevronLeft, FiChevronRight, FiStar } from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { IoStar } from "react-icons/io5";
 
 const testimonials = [
   {
@@ -101,7 +102,7 @@ const Testimonials = () => {
   const renderStars = (count: number) => {
     return Array(count)
       .fill(0)
-      .map((_, index) => <FiStar key={index} className="text-accent-gold" />);
+      .map((_, index) => <IoStar key={index} className="text-accent-gold" />);
   };
 
   return (
