@@ -1,10 +1,38 @@
 @import "tailwindcss";
 
 :root {
+  /* Background and foreground */
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Primary Colors */
+  --boxing-red: 213 0 0;
+  --boxing-black: 33 33 33;
+  --steel-gray: 117 117 117;
+
+  /* Secondary Colors */
+  --clean-white: 255 255 255;
+  --accent-gold: 255 215 0;
+
+  /* Text Colors */
+  --body-text: 51 51 51;
+  --caption-text: 117 117 117;
+
+  /* Font Families */
   --font-primary: 'Barlow', sans-serif;
   --font-accent: 'Bebas Neue', sans-serif;
+
+  /* Shadows */
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-button: 0 4px 6px -1px rgba(213, 0, 0, 0.4), 0 2px 4px -1px rgba(213, 0, 0, 0.06);
+
+  /* Border Radius */
+  --radius-card: 0.5rem;
+  --radius-button: 0.25rem;
+
+  /* Spacing */
+  --space-section: 5rem;
+  --space-element: 2.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,6 +48,49 @@ body {
   font-family: var(--font-primary), Arial, Helvetica, sans-serif;
 }
 
+/* Typography utilities */
+.text-h1 {
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.text-h2 {
+  font-size: 28px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.text-h3 {
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.text-h4 {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.text-body {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.text-small {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.text-button {
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
 /* Background patterns for sections */
 .bg-hero-pattern {
   background-image: linear-gradient(rgba(33, 33, 33, 0.7), rgba(33, 33, 33, 0.7)), url('/images/hero-bg.jpg');
@@ -31,6 +102,74 @@ body {
   background-image: linear-gradient(rgba(213, 0, 0, 0.9), rgba(213, 0, 0, 0.9)), url('/images/cta-bg.jpg');
   background-size: cover;
   background-position: center;
+}
+
+/* Color utilities */
+.text-boxing-red {
+  color: rgb(var(--boxing-red));
+}
+
+.text-boxing-black {
+  color: rgb(var(--boxing-black));
+}
+
+.text-steel-gray {
+  color: rgb(var(--steel-gray));
+}
+
+.text-clean-white {
+  color: rgb(var(--clean-white));
+}
+
+.text-accent-gold {
+  color: rgb(var(--accent-gold));
+}
+
+.text-body-text {
+  color: rgb(var(--body-text));
+}
+
+.text-caption-text {
+  color: rgb(var(--caption-text));
+}
+
+/* Background color utilities */
+.bg-boxing-red {
+  background-color: rgb(var(--boxing-red));
+}
+
+.bg-boxing-black {
+  background-color: rgb(var(--boxing-black));
+}
+
+.bg-steel-gray {
+  background-color: rgb(var(--steel-gray));
+}
+
+.bg-clean-white {
+  background-color: rgb(var(--clean-white));
+}
+
+.bg-accent-gold {
+  background-color: rgb(var(--accent-gold));
+}
+
+/* Border radius utilities */
+.rounded-card {
+  border-radius: var(--radius-card);
+}
+
+.rounded-button {
+  border-radius: var(--radius-button);
+}
+
+/* Shadow utilities */
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-button {
+  box-shadow: var(--shadow-button);
 }
 
 /* Transitions */
@@ -63,6 +202,44 @@ body {
 
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Hover state utilities */
+.hover\:text-accent-gold:hover {
+  color: rgb(var(--accent-gold));
+}
+
+.hover\:text-white:hover {
+  color: white;
+}
+
+.hover\:text-black:hover {
+  color: black;
+}
+
+.hover\:bg-steel-gray:hover {
+  background-color: rgb(var(--steel-gray));
+}
+
+.hover\:bg-opacity-90:hover {
+  opacity: 0.9;
+}
+
+.hover\:border-accent-gold:hover {
+  border-color: rgb(var(--accent-gold));
+}
+
+/* For specific border/background combinations */
+.hover\:bg-accent-gold:hover {
+  background-color: rgb(var(--accent-gold));
+}
+
+.hover\:border-opacity-90:hover {
+  border-opacity: 0.9;
+}
+
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* For placeholder images - remove when real images are added */
