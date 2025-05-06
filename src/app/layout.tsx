@@ -39,7 +39,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${barlow.variable} ${bebasNeue.variable}`}>
+    <html
+      lang="en"
+      className={`${barlow.variable} ${bebasNeue.variable} overflow-x-hidden`}
+    >
       <body className="font-primary bg-clean-white text-body-text flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow pt-16 md:pt-20">{children}</main>

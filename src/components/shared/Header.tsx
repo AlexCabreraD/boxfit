@@ -23,7 +23,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed w-full z-50 bg-boxing-black bg-opacity-95 text-white">
+    <header className="fixed w-screen z-50 bg-boxing-black bg-opacity-95 text-white">
       <div className="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <div className="font-accent text-2xl md:text-3xl text-boxing-red">
