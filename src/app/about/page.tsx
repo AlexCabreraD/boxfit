@@ -9,12 +9,12 @@ import CallToAction from "@/components/shared/CallToAction";
 export const metadata: Metadata = {
   title: "About BoxFit Utah | Clearfield Boxing Gym",
   description:
-    "Learn about BoxFit Utah's story, our experienced coaches with 20+ years in boxing, our values, and our inclusive facility in Clearfield. Latinx-owned since 2020.",
+    "Learn about BoxFit Utah's story, our experienced coaches with 20+ years in boxing, our values, and our inclusive facility in Clearfield. Latino-owned since 2020.",
   keywords: [
     "BoxFit Utah",
     "boxing gym Clearfield",
     "boxing coaches Utah",
-    "Latinx-owned gym",
+    "Latino-owned gym",
     "boxing facility Clearfield",
     "professional boxing training Utah",
   ],

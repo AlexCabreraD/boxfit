@@ -19,7 +19,7 @@ const OurStory = () => {
             </p>
 
             <p className="text-lg mb-6">
-              As a Latinx-owned business, we take pride in creating an inclusive
+              As a Latino-owned business, we take pride in creating an inclusive
               environment where diversity is celebrated and everyone feels
               welcome. Our head coach brings over 20 years of professional
               experience, having trained both amateur and professional boxers
