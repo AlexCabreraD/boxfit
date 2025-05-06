@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
 import { Barlow, Bebas_Neue } from "next/font/google";
+import Header from "@/components/shared/Header";
+import Footer from "@/components/shared/Footer";
 import "./globals.css";
 
 const barlow = Barlow({
-    variable: "--font-barlow",
+    variable: "--font-primary",
     subsets: ["latin"],
     weight: ["400", "600", "700"],
     display: "swap",
 });
 
 const bebasNeue = Bebas_Neue({
-    variable: "--font-bebas-neue",
+    variable: "--font-accent",
     subsets: ["latin"],
     weight: "400",
     display: "swap",
@@ -28,13 +30,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-        <body
-            className={`${barlow.variable} ${bebasNeue.variable} font-primary bg-clean-white text-body-text`}
-        >
-        <div className="flex min-h-screen flex-col">
-            <main className="flex-grow">{children}</main>
-        </div>
+        <html lang="en" className={`${barlow.variable} ${bebasNeue.variable}`}>
+        <body className="font-primary bg-clean-white text-body-text flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow pt-16 md:pt-20">{children}</main>
+        <Footer />
         </body>
         </html>
     );
