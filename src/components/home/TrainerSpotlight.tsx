@@ -31,7 +31,7 @@ const TrainerSpotlight = () => {
 
           <div>
             <h3 className="font-primary font-bold text-2xl mb-2">
-              Coach Martinez
+              Coach Pablo
             </h3>
             <p className="text-boxing-red font-semibold mb-6">
               Head Boxing Coach & Founder
@@ -53,10 +53,10 @@ const TrainerSpotlight = () => {
             </div>
 
             <p className="text-caption-text mb-6">
-              With over two decades of boxing expertise, Coach Martinez has
-              trained champions at all levels of competition. His deep
-              knowledge, personalized approach, and dedication to the sport have
-              helped countless athletes reach their full potential.
+              With over two decades of boxing expertise, Coach Pablo has trained
+              champions at all levels of competition. His deep knowledge,
+              personalized approach, and dedication to the sport have helped
+              countless athletes reach their full potential.
             </p>
 
             <div className="mb-6">
