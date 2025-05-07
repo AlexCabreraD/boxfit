@@ -16,7 +16,6 @@ const ProgramsCallToAction = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Free Trial Card */}
             <div className="bg-steel-gray bg-opacity-20 p-8 rounded-card border border-steel-gray border-opacity-30 hover:border-boxing-red transition-colors">
               <div className="flex items-start mb-4">
                 <div className="mr-4">
@@ -28,7 +27,7 @@ const ProgramsCallToAction = () => {
                   <h3 className="font-primary font-bold text-xl text-white">
                     Free Trial Class
                   </h3>
-                  <p className="text-steel-gray">
+                  <p className="text-neutral-300">
                     Experience BoxFit before committing
                   </p>
                 </div>
@@ -61,7 +60,6 @@ const ProgramsCallToAction = () => {
               </Link>
             </div>
 
-            {/* Schedule Tour Card */}
             <div className="bg-steel-gray bg-opacity-20 p-8 rounded-card border border-steel-gray border-opacity-30 hover:border-accent-gold transition-colors">
               <div className="flex items-start mb-4">
                 <div className="mr-4">
@@ -73,7 +71,7 @@ const ProgramsCallToAction = () => {
                   <h3 className="font-primary font-bold text-xl text-white">
                     Schedule a Tour
                   </h3>
-                  <p className="text-steel-gray">
+                  <p className="text-neutral-300">
                     See our facilities and meet our team
                   </p>
                 </div>

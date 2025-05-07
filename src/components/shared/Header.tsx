@@ -18,7 +18,6 @@ const Header = () => {
     { name: "Programs", href: "/programs" },
     { name: "Schedule", href: "/schedule" },
     { name: "Trainers", href: "/trainers" },
-    { name: "Success Stories", href: "/success-stories" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -31,7 +30,6 @@ const Header = () => {
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-6 items-center">
           {navLinks.map((link) => (
             <Link
@@ -50,7 +48,6 @@ const Header = () => {
           </Link>
         </nav>
 
-        {/* Mobile Menu Button */}
         <button
           className="md:hidden text-white text-2xl focus:outline-none"
           onClick={toggleMenu}
@@ -60,7 +57,6 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div

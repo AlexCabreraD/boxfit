@@ -243,6 +243,232 @@ body {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
+/* Animation for trainer card hover */
+.trainer-card-hover {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.trainer-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Diagonal accent line */
+.diagonal-accent {
+  position: relative;
+}
+
+.diagonal-accent::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background-color: rgb(var(--boxing-red));
+  transform: rotate(-2deg);
+  bottom: -10px;
+  left: 0;
+}
+
+/* Background patterns for trainers page */
+.bg-trainer-pattern {
+  background-image: linear-gradient(rgba(33, 33, 33, 0.85), rgba(33, 33, 33, 0.85)), url('/images/trainers-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Accent box */
+.accent-box {
+  position: relative;
+  overflow: hidden;
+}
+
+.accent-box::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: rgb(var(--boxing-red));
+  opacity: 0.1;
+  border-radius: 50%;
+  top: -30px;
+  right: -30px;
+}
+
+/* Image frame for trainer profiles */
+.trainer-image-frame {
+  position: relative;
+  border: 3px solid rgb(var(--boxing-black));
+}
+
+.trainer-image-frame::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: -15px;
+  bottom: -15px;
+  background-color: rgb(var(--boxing-red));
+  z-index: -1;
+}
+
+/* Experience badge */
+.experience-badge {
+  display: inline-block;
+  background-color: rgb(var(--boxing-red));
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+/* Profile section divider */
+.profile-divider {
+  height: 3px;
+  width: 60px;
+  background-color: rgb(var(--boxing-red));
+  margin: 2rem 0;
+}
+
+/* Quote styling */
+.trainer-quote {
+  position: relative;
+  padding: 1.5rem;
+  background-color: rgba(117, 117, 117, 0.1);
+  border-left: 4px solid rgb(var(--boxing-red));
+  font-style: italic;
+}
+
+.trainer-quote::before {
+  content: "''";
+  font-family: var(--font-accent), serif;
+  font-size: 6rem;
+  color: rgb(var(--boxing-red));
+  opacity: 0.15;
+  position: absolute;
+  top: -1.5rem;
+  left: 0.5rem;
+}
+
+/* Trainer specialties list */
+.specialties-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.specialties-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.specialties-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: rgb(var(--boxing-red));
+}
+
+/* Trainer gallery images */
+.gallery-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.gallery-image:hover {
+  transform: scale(1.03);
+}
+
+.gallery-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%);
+}
+
+/* Join team section */
+.join-team-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.join-team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.join-team-card::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: rgb(var(--boxing-red));
+  top: 0;
+  left: 0;
+  transform: scaleX(0.3);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.join-team-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Fancy link style for trainers page */
+.fancy-link {
+  position: relative;
+  color: rgb(var(--boxing-red));
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.fancy-link::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(var(--boxing-red));
+  bottom: -2px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.fancy-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Animated button for trainers page */
+.animated-button {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.animated-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(-100%);
+  z-index: -1;
+  transition: transform 0.3s ease;
+}
+
+.animated-button:hover::before {
+  transform: translateX(0);
+}
+
 /* For placeholder images - remove when real images are added */
 .placeholder-image {
   background-color: #757575;

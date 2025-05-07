@@ -118,7 +118,6 @@ const Testimonials = () => {
         </div>
 
         <div className="max-w-4xl mx-auto relative">
-          {/* Navigation buttons */}
           <button
             onClick={() => handleManualNav("prev")}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 z-10 bg-boxing-red p-2 rounded-full text-white focus:outline-none hover:bg-opacity-90 transition-colors"
@@ -135,7 +134,6 @@ const Testimonials = () => {
             <FiChevronRight size={24} />
           </button>
 
-          {/* Testimonial content */}
           <div className="bg-steel-gray bg-opacity-20 p-8 md:p-12 rounded-lg relative overflow-hidden">
             <div
               className="w-24 h-24 bg-boxing-red opacity-20 rounded-full absolute -top-12 -right-12"
@@ -159,7 +157,7 @@ const Testimonials = () => {
                   <h3 className="font-primary font-semibold text-xl">
                     {testimonials[currentIndex].name}
                   </h3>
-                  <p className="text-steel-gray">
+                  <p className="text-neutral-300">
                     {testimonials[currentIndex].role}
                   </p>
                   <div className="flex mt-1">
@@ -180,7 +178,6 @@ const Testimonials = () => {
             </div>
           </div>
 
-          {/* Indicator dots */}
           <div className="flex justify-center mt-6 space-x-2">
             {testimonials.map((_, index) => (
               <button

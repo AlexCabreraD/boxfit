@@ -29,7 +29,6 @@ const AboutPreview = () => {
     <section className="py-20 bg-gray-50" id="about-preview">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left column: Content */}
           <div>
             <h2 className="font-accent text-3xl md:text-4xl mb-4 text-boxing-black">
               EXPERIENCE THE BOXFIT{" "}
@@ -66,7 +65,6 @@ const AboutPreview = () => {
             </Link>
           </div>
 
-          {/* Right column: Images */}
           <div className="grid grid-cols-2 gap-4 relative">
             <div className="col-span-2 lg:col-span-1">
               <div className="relative h-80 rounded-lg overflow-hidden">
@@ -94,7 +92,6 @@ const AboutPreview = () => {
               </div>
             </div>
 
-            {/* Accent element */}
             <div className="absolute -bottom-5 -right-5 lg:-left-5 w-20 h-20 bg-boxing-red z-0 hidden lg:block"></div>
             <div className="absolute -top-5 -left-5 lg:-right-5 w-20 h-20 bg-accent-gold z-0 hidden lg:block"></div>
           </div>

@@ -4,13 +4,11 @@ import { FiArrowRight } from "react-icons/fi";
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center">
-      {/* Background with overlay */}
       <div
         className="absolute inset-0 bg-hero-pattern bg-cover bg-center"
         aria-hidden="true"
       />
 
-      {/* Content */}
       <div className="container mx-auto px-4 relative z-10 py-20 md:py-32">
         <div className="max-w-3xl text-white">
           <h1 className="font-accent text-5xl md:text-6xl lg:text-7xl mb-4 text-white">

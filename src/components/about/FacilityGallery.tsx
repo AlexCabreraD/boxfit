@@ -56,7 +56,6 @@ const FacilityGallery = () => {
 
         <FacilityGalleryClient facilityImages={facilityImages} />
 
-        {/* Equipment Features */}
         <div className="mt-16 bg-white rounded-card shadow-card p-8">
           <h3 className="font-accent text-2xl text-boxing-black mb-6 text-center">
             STATE-OF-THE-ART <span className="text-boxing-red">EQUIPMENT</span>
@@ -113,7 +112,6 @@ const FacilityGallery = () => {
           </div>
         </div>
 
-        {/* Amenities */}
         <div className="mt-8 text-center">
           <p className="text-steel-gray">
             Located at: 1740 S 300th W, Clearfield, UT 84015

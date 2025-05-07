@@ -75,7 +75,6 @@ const FacilityGalleryClient = ({
         ))}
       </div>
 
-      {/* Lightbox */}
       {currentImageIndex !== null && (
         <div
           className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center"
@@ -127,7 +126,6 @@ const FacilityGalleryClient = ({
             <FiChevronRight size={48} />
           </button>
 
-          {/* Image counter */}
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black bg-opacity-50 px-4 py-1 rounded-full text-sm">
             {currentImageIndex + 1} / {facilityImages.length}
           </div>

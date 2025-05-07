@@ -12,7 +12,6 @@ const ProgramCard = ({ program, reverse = false }: ProgramCardProps) => {
       id={program.id}
       className="scroll-mt-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
     >
-      {/* Content Column */}
       <div className={reverse ? "lg:order-2" : ""}>
         <div className="mb-4 flex items-center">
           {program.icon}
@@ -52,7 +51,6 @@ const ProgramCard = ({ program, reverse = false }: ProgramCardProps) => {
         </a>
       </div>
 
-      {/* Image Column */}
       <div className={reverse ? "lg:order-1" : ""}>
         <div className="relative h-80 lg:h-96 rounded-lg overflow-hidden">
           <div className="absolute inset-0 border-2 border-boxing-red z-10 rounded-lg transform translate-x-4 translate-y-4"></div>

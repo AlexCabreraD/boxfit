@@ -5,7 +5,6 @@ const OurStory = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left column: Content */}
           <div>
             <h2 className="font-accent text-3xl md:text-4xl mb-6 text-boxing-black">
               ESTABLISHED WITH <span className="text-boxing-red">PURPOSE</span>
@@ -59,9 +58,7 @@ const OurStory = () => {
             </div>
           </div>
 
-          {/* Right column: Images */}
           <div className="relative">
-            {/* Main image with frame */}
             <div className="relative h-[500px] z-10">
               <div className="absolute inset-4 border-4 border-boxing-red z-20"></div>
               <div className="absolute inset-0 bg-boxing-black overflow-hidden">
@@ -70,7 +67,6 @@ const OurStory = () => {
               </div>
             </div>
 
-            {/* Background elements */}
             <div className="absolute -bottom-8 -right-8 w-64 h-64 bg-boxing-black z-0"></div>
             <div className="absolute top-12 -left-8 w-16 h-16 bg-accent-gold z-0"></div>
           </div>

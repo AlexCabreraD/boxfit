@@ -16,9 +16,7 @@ const TrainerSpotlight = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* Image column */}
           <div className="relative">
-            {/* Main image with frame */}
             <div className="relative h-96 z-10">
               <div className="absolute inset-4 border-4 border-boxing-red z-20"></div>
               <div className="absolute inset-0 bg-boxing-black overflow-hidden">
@@ -27,12 +25,10 @@ const TrainerSpotlight = () => {
               </div>
             </div>
 
-            {/* Background elements */}
             <div className="absolute -bottom-5 -right-5 w-64 h-64 bg-boxing-black z-0"></div>
             <div className="absolute top-12 -left-5 w-12 h-12 bg-accent-gold z-0"></div>
           </div>
 
-          {/* Content column */}
           <div>
             <h3 className="font-primary font-bold text-2xl mb-2">
               Coach Martinez

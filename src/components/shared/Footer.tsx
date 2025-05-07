@@ -13,7 +13,6 @@ const Footer = () => {
     <footer className="bg-boxing-black text-white pt-12 pb-6 w-screen">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Contact Information */}
           <div>
             <h3 className="text-accent-gold font-accent text-xl mb-4">
               BOXFIT UTAH
@@ -62,7 +61,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="text-accent-gold font-accent text-xl mb-4">
               QUICK LINKS
@@ -119,7 +117,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Hours of Operation */}
           <div>
             <h3 className="text-accent-gold font-accent text-xl mb-4">HOURS</h3>
             <ul className="space-y-2">
@@ -147,7 +144,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Newsletter Signup */}
           <div>
             <h3 className="text-accent-gold font-accent text-xl mb-4">
               JOIN OUR NEWSLETTER
