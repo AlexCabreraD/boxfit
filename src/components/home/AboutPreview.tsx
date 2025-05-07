@@ -70,8 +70,7 @@ const AboutPreview = () => {
               <div className="relative h-80 rounded-lg overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60 z-10" />
                 <div className="bg-boxing-black w-full h-full">
-                  {/* Replace with actual image when available */}
-                  <div className="w-full h-full bg-steel-gray opacity-40"></div>
+                  <div className="w-full h-full bg-steel-gray opacity-70 bg-image-cell-2"></div>
                 </div>
               </div>
             </div>
@@ -79,15 +78,13 @@ const AboutPreview = () => {
               <div className="relative h-36 rounded-lg overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60 z-10" />
                 <div className="bg-boxing-black w-full h-full">
-                  {/* Replace with actual image when available */}
-                  <div className="w-full h-full bg-steel-gray opacity-40"></div>
+                  <div className="w-full h-full bg-steel-gray opacity-70 bg-image-cell"></div>
                 </div>
               </div>
               <div className="relative h-36 rounded-lg overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60 z-10" />
                 <div className="bg-boxing-black w-full h-full">
-                  {/* Replace with actual image when available */}
-                  <div className="w-full h-full bg-steel-gray opacity-40"></div>
+                  <div className="w-full h-full bg-steel-gray opacity-70 bg-image-cell-3"></div>
                 </div>
               </div>
             </div>

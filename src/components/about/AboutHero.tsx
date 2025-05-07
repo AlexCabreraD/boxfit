@@ -5,7 +5,7 @@ const AboutHero = () => {
   return (
     <section className="relative min-h-[60vh] flex items-center">
       <div
-        className="absolute inset-0 bg-hero-pattern bg-cover bg-center"
+        className="absolute inset-0 bg-about-hero-pattern bg-cover bg-center"
         aria-hidden="true"
       />
 

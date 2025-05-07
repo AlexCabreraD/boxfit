@@ -10,8 +10,8 @@ const TrainerProfile = () => {
               <div className="trainer-image-frame relative z-10">
                 <div className="relative h-[500px]">
                   {/* Replace with actual image when available */}
-                  <div className="w-full h-full bg-steel-gray opacity-40 flex items-center justify-center">
-                    <span className="text-white text-lg">Coach Pablo</span>
+                  <div className="w-full h-full bg-steel-gray opacity-80 flex items-center justify-center">
+                    <div className={"coach-pablo-bg-img w-full h-full"} />
                   </div>
                 </div>
               </div>
