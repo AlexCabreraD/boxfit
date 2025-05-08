@@ -94,13 +94,13 @@ body {
 
 /* Background patterns for sections */
 .bg-hero-pattern {
-  background-image: linear-gradient(rgba(33, 33, 33, 1), rgba(33, 33, 33, 0.7)), url('@/images/hero-bg.jpg');
+  background-image: linear-gradient(rgba(33, 33, 33, 1), rgba(33, 33, 33, 0.7)), url('/images/hero-bg.jpg');
   background-size: cover;
   background-position: center;
 }
 
 .bg-about-hero-pattern {
-  background-image: linear-gradient(rgba(33, 33, 33, 1), rgba(33, 33, 33, 0.8)), url('@/images/about-hero-lg.JPG');
+  background-image: linear-gradient(rgba(33, 33, 33, 1), rgba(33, 33, 33, 0.8)), url('/images/about-hero-lg.JPG');
   background-size: cover;
   background-position: center;
 }
@@ -112,31 +112,31 @@ body {
 }
 
 .bg-image-cell {
-  background-image: url('@/images/cell-image.jpg');
+  background-image: url('/images//cell-image.jpg');
   background-size: cover;
   background-position: center;
 }
 
 .bg-image-cell-2 {
-  background-image: url('@/images/cell-image-4.jpg');
+  background-image: url('/images/cell-image-4.jpg');
   background-size: cover;
   background-position: top;
 }
 
 .bg-image-cell-3 {
-  background-image: url('@/images/cell-image-3.jpg');
+  background-image: url('/images/cell-image-3.jpg');
   background-size: cover;
   background-position: center;
 }
 
 .coach-pablo-bg-img {
-  background-image: url('@/images/coach-pablo.jpg');
+  background-image: url('/images/coach-pablo.jpg');
   background-size: cover;
   background-position: bottom;
 }
 
 .bg-about-section-1{
-  background-image: url('@/images/about-us-section-1.jpg');
+  background-image: url('/images/about-us-section-1.jpg');
   background-size: cover;
   background-position: bottom;
 }
