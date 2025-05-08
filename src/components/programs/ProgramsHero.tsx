@@ -2,11 +2,7 @@ const ProgramsHero = () => {
   return (
     <section className="relative py-32 md:py-40 flex items-center">
       <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(33, 33, 33, 0.85), rgba(33, 33, 33, 0.85)), url('/images/hero-bg.jpg')",
-        }}
+        className="absolute inset-0 bg-cover bg-center bg-boxing-black"
         aria-hidden="true"
       />
 
