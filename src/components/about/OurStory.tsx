@@ -62,7 +62,6 @@ const OurStory = () => {
             <div className="relative h-[500px] z-10">
               <div className="absolute inset-4 border-4 border-boxing-red z-20"></div>
               <div className="absolute inset-0 bg-boxing-black overflow-hidden">
-                {/* Replace with actual image when available */}
                 <div className="w-full h-full bg-steel-gray opacity-40 bg-about-section-1"></div>
               </div>
             </div>
