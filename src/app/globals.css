@@ -100,7 +100,7 @@ body {
 }
 
 .bg-about-hero-pattern {
-  background-image: linear-gradient(rgba(33, 33, 33, 1), rgba(33, 33, 33, 0.8)), url('/images/about-hero-lg.JPG');
+  background-image: linear-gradient(rgba(33, 33, 33, 1), rgba(33, 33, 33, 0.8)), url('/images/about-hero.JPG');
   background-size: cover;
   background-position: center;
 }
