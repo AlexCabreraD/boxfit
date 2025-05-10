@@ -3,10 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { IoStar } from "react-icons/io5";
+import Image from "next/image";
 
 const testimonials = [
   {
     name: "Randy Vazquez",
+    image: null,
     role: "Fitness Member",
     quote:
       "Nicest Boxing Gym in Utah. I get excited every time I go train, the gym has a certain feel to it that only a boxing gym should have. All the bags are also new! The coaching is what makes it all the more worth it. If you haven't checked it out I would get signed up @BoxFit Utah",
@@ -14,6 +16,7 @@ const testimonials = [
   },
   {
     name: "Christina Sanchez",
+    image: null,
     role: "Parent of Junior Boxer",
     quote:
       "Tonight's the first time I came to check out this boxing gym and support my grandson, and I absolutely loved the vibe and the way Pablo the trainer conducted his class.Pablo's awesome! I love the atmosphere, and the way he teaches. I highly recommend Boxfit Utah!!",
@@ -21,6 +24,7 @@ const testimonials = [
   },
   {
     name: "Cassandra Carrasco",
+    image: null,
     role: "Parent of Junior Boxer",
     quote:
       "Pablo is very knowledgeable when it comes to Boxing and Fitness. Class times are perfect for working adults/parents. Great equipment.",
@@ -28,6 +32,7 @@ const testimonials = [
   },
   {
     name: "Elena M.",
+    image: null,
     role: "Beginner, 3 months",
     quote:
       "I was intimidated to try boxing at first, but the team at BoxFit made me feel welcome from day one. As a complete beginner, I appreciate how they break down techniques and provide a supportive environment to learn.",
@@ -152,7 +157,7 @@ const Testimonials = () => {
                 <div className="w-20 h-20 mb-4 md:mb-0 md:mr-6 relative rounded-full overflow-hidden bg-boxing-red flex-shrink-0 flex items-center justify-center text-2xl font-bold text-white">
                   {testimonials[currentIndex].image &&
                   testimonials[currentIndex].image !== "/default-avatar.jpg" ? (
-                    <img
+                    <Image
                       src={testimonials[currentIndex].image}
                       alt={`${testimonials[currentIndex].name}'s avatar`}
                       className="w-full h-full object-cover"
