@@ -1,23 +1,12 @@
 import { FiTarget, FiUsers, FiAward, FiHeart, FiZap } from "react-icons/fi";
 import ProgramCard from "./ProgramCard";
-import { JSX } from "react";
-
-export type ProgramType = {
-  id: string;
-  title: string;
-  icon: JSX.Element;
-  description: string;
-  details: string[];
-  suitable: string;
-  image: string;
-  schedule: string;
-};
+import { ProgramType } from "./types";
 
 const programs: ProgramType[] = [
   {
     id: "beginners",
     title: "Beginner Boxing",
-    icon: <FiUsers size={42} className="text-boxing-red" />,
+    icon: <FiUsers size={42} className="text-white" />,
     description:
       "Our beginner program provides a solid foundation in boxing fundamentals in a supportive, non-intimidating environment.",
     details: [
@@ -29,14 +18,13 @@ const programs: ProgramType[] = [
     ],
     suitable:
       "Perfect for those with no prior boxing experience who want to learn the sport in a welcoming environment.",
-    image: "/images/beginners-boxing.jpg",
     schedule:
       "Tuesday & Thursday 5:00-6:00 PM and 6:00-7:00 PM, Friday 5:00-6:00 PM",
   },
   {
     id: "kids",
     title: "Kids Boxing",
-    icon: <FiHeart size={42} className="text-boxing-red" />,
+    icon: <FiHeart size={42} className="text-white" />,
     description:
       "Our children's program focuses on discipline, confidence, and fun while teaching age-appropriate boxing skills.",
     details: [
@@ -48,13 +36,12 @@ const programs: ProgramType[] = [
     ],
     suitable:
       "Designed for children ages 6-15, our program creates a positive environment for kids to grow physically and mentally.",
-    image: "/images/kids-boxing.jpg",
     schedule: "Monday & Wednesday 5:00-6:00 PM",
   },
   {
     id: "adult",
     title: "Adult Boxing",
-    icon: <FiTarget size={42} className="text-boxing-red" />,
+    icon: <FiTarget size={42} className="text-white" />,
     description:
       "A comprehensive boxing program for adults of all skill levels focusing on technique, conditioning, and practical boxing skills.",
     details: [
@@ -66,14 +53,13 @@ const programs: ProgramType[] = [
     ],
     suitable:
       "Great for adults of varying fitness levels who want to learn boxing in a structured, supportive group environment.",
-    image: "/images/adult-boxing.jpg",
     schedule:
       "Monday & Wednesday 6:00-7:00 PM, Morning sessions Monday & Wednesday 6:30-7:30 AM (by appointment)",
   },
   {
     id: "advanced",
     title: "Advanced Boxing",
-    icon: <FiAward size={42} className="text-boxing-red" />,
+    icon: <FiAward size={42} className="text-white" />,
     description:
       "For experienced boxers looking to refine their skills and technique through more challenging training.",
     details: [
@@ -85,13 +71,12 @@ const programs: ProgramType[] = [
     ],
     suitable:
       "Ideal for boxers with previous experience who want to elevate their skills without necessarily focusing on competition.",
-    image: "/images/advanced-boxing.jpg",
     schedule: "Monday, Wednesday & Friday 6:00-7:00 PM",
   },
   {
     id: "elite",
     title: "Elite Boxing",
-    icon: <FiZap size={42} className="text-boxing-red" />,
+    icon: <FiZap size={42} className="text-white" />,
     description:
       "Our competition-focused program for serious boxers preparing for amateur or professional bouts.",
     details: [
@@ -103,7 +88,6 @@ const programs: ProgramType[] = [
     ],
     suitable:
       "Designed for dedicated boxers with significant experience who are looking to compete or already competing at amateur or professional levels.",
-    image: "/images/elite-boxing.jpg",
     schedule: "Monday, Wednesday & Friday 6:00-7:30 PM",
   },
 ];

@@ -1,5 +1,13 @@
+import React from "react";
 import Link from "next/link";
-import { FiUsers, FiHeart, FiTarget, FiAward, FiZap } from "react-icons/fi";
+import {
+  FiUsers,
+  FiHeart,
+  FiTarget,
+  FiAward,
+  FiZap,
+  FiClock,
+} from "react-icons/fi";
 
 const ProgramsAtGlance = () => {
   const programCards = [
@@ -62,41 +70,33 @@ const ProgramsAtGlance = () => {
           {programCards.map((program) => (
             <div
               key={program.id}
-              className="bg-white rounded-card shadow-card p-6 hover:shadow-lg transition-shadow duration-300 flex flex-col h-full"
+              className="bg-white rounded-card shadow-card p-6 hover:shadow-lg transition-all duration-300 flex flex-col h-full border-t-4 border-boxing-red hover:transform hover:-translate-y-1"
             >
-              <div className="mb-4">{program.icon}</div>
+              <div className="mb-4">
+                <div className="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center">
+                  {React.cloneElement(program.icon, {
+                    className: "text-boxing-red",
+                  })}
+                </div>
+              </div>
               <h3 className="font-primary font-semibold text-xl mb-3">
                 {program.title}
               </h3>
               <p className="text-caption-text mb-4 flex-grow">
                 {program.description}
               </p>
-              <div className="bg-gray-50 p-3 rounded-lg mb-4 flex items-center">
-                <span className="text-boxing-red mr-2">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </span>
-                <span className="text-sm">{program.schedule}</span>
+              <div className="bg-gray-50 p-3 rounded-lg mb-4 flex items-center relative overflow-hidden">
+                <div className="absolute right-0 bottom-0 w-12 h-12 bg-boxing-red opacity-5 rounded-full transform translate-x-4 translate-y-4"></div>
+                <FiClock className="text-boxing-red mr-2 z-10" size={16} />
+                <span className="text-sm z-10">{program.schedule}</span>
               </div>
               <Link
                 href={`#${program.id}`}
-                className="text-boxing-red font-semibold hover:text-black transition-colors inline-flex items-center"
+                className="text-boxing-red font-semibold hover:text-black transition-colors inline-flex items-center group"
               >
                 Learn More
                 <svg
-                  className="w-4 h-4 ml-1"
+                  className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

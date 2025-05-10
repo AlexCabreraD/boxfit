@@ -3,7 +3,6 @@ import AboutHero from "@/components/about/AboutHero";
 import OurStory from "@/components/about/OurStory";
 import OurValues from "@/components/about/OurValues";
 import OurTrainers from "@/components/about/OurTrainers";
-import FacilityGallery from "@/components/about/FacilityGallery";
 import CallToAction from "@/components/shared/CallToAction";
 
 export const metadata: Metadata = {
@@ -27,7 +26,7 @@ export default function AboutPage() {
       <OurStory />
       <OurValues />
       <OurTrainers />
-      <FacilityGallery />
+      {/*<FacilityGallery />*/}
       <CallToAction />
     </>
   );
