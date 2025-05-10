@@ -17,7 +17,7 @@ const testimonials = [
   {
     name: "Christina Sanchez",
     image: null,
-    role: "Parent of Junior Boxer",
+    role: "Grandparent of Junior Boxer",
     quote:
       "Tonight's the first time I came to check out this boxing gym and support my grandson, and I absolutely loved the vibe and the way Pablo the trainer conducted his class.Pablo's awesome! I love the atmosphere, and the way he teaches. I highly recommend Boxfit Utah!!",
     stars: 5,
