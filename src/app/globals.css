@@ -141,6 +141,12 @@ body {
   background-position: bottom;
 }
 
+.bg-image-mission{
+  background-image: url('/images/bg-image-mission.jpg');
+  background-size: cover;
+  background-position: top;
+}
+
 /* Color utilities */
 .text-boxing-red {
   color: rgb(var(--boxing-red));

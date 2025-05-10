@@ -81,7 +81,9 @@ const OurValues = () => {
               </p>
             </div>
             <div className="relative h-64 md:h-full">
-              <div className="absolute inset-4 border-2 border-boxing-red"></div>
+              <div className="absolute inset-4 border-2 border-boxing-red">
+                <div className="bg-image-mission w-full h-full"></div>
+              </div>
               <div className="absolute inset-0 bg-steel-gray opacity-20"></div>
             </div>
           </div>
