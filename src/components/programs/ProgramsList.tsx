@@ -1,4 +1,4 @@
-import { FiTarget, FiUsers, FiAward, FiHeart } from "react-icons/fi";
+import { FiTarget, FiUsers, FiAward, FiHeart, FiZap } from "react-icons/fi";
 import ProgramCard from "./ProgramCard";
 import { JSX } from "react";
 
@@ -10,12 +10,13 @@ export type ProgramType = {
   details: string[];
   suitable: string;
   image: string;
+  schedule: string;
 };
 
 const programs: ProgramType[] = [
   {
     id: "beginners",
-    title: "Boxing for Beginners",
+    title: "Beginner Boxing",
     icon: <FiUsers size={42} className="text-boxing-red" />,
     description:
       "Our beginner program provides a solid foundation in boxing fundamentals in a supportive, non-intimidating environment.",
@@ -29,10 +30,12 @@ const programs: ProgramType[] = [
     suitable:
       "Perfect for those with no prior boxing experience who want to learn the sport in a welcoming environment.",
     image: "/images/beginners-boxing.jpg",
+    schedule:
+      "Tuesday & Thursday 5:00-6:00 PM and 6:00-7:00 PM, Friday 5:00-6:00 PM",
   },
   {
     id: "kids",
-    title: "Kids' Boxing Program",
+    title: "Kids Boxing",
     icon: <FiHeart size={42} className="text-boxing-red" />,
     description:
       "Our children's program focuses on discipline, confidence, and fun while teaching age-appropriate boxing skills.",
@@ -46,40 +49,62 @@ const programs: ProgramType[] = [
     suitable:
       "Designed for children ages 6-15, our program creates a positive environment for kids to grow physically and mentally.",
     image: "/images/kids-boxing.jpg",
+    schedule: "Monday & Wednesday 5:00-6:00 PM",
   },
   {
-    id: "competitive",
-    title: "Competitive Boxing",
-    icon: <FiAward size={42} className="text-boxing-red" />,
-    description:
-      "For serious boxers looking to compete, our program offers advanced training, strategy, and competition preparation.",
-    details: [
-      "Advanced techniques and combinations",
-      "Strategic sparring and fight preparation",
-      "Performance conditioning and strength training",
-      "Competition mindset and mental preparation",
-      "Personalized coaching from experienced professionals",
-    ],
-    suitable:
-      "Ideal for experienced boxers who want to take their skills to the competitive level under professional guidance.",
-    image: "/images/competitive-boxing.jpg",
-  },
-  {
-    id: "fitness",
-    title: "Boxing Fitness",
+    id: "adult",
+    title: "Adult Boxing",
     icon: <FiTarget size={42} className="text-boxing-red" />,
     description:
-      "Get in the best shape of your life with our high-intensity boxing fitness classes that build strength, endurance, and confidence.",
+      "A comprehensive boxing program for adults of all skill levels focusing on technique, conditioning, and practical boxing skills.",
     details: [
-      "High-intensity cardio workouts using boxing techniques",
-      "Core strengthening and full-body conditioning",
-      "Boxing-inspired circuit training",
-      "No contact/sparring - focus is on fitness",
-      "Burn calories while learning practical skills",
+      "Comprehensive boxing technique development",
+      "Personalized instruction in a group setting",
+      "Challenging workouts that improve overall fitness",
+      "Opportunities for partner drills and controlled practice",
+      "Supportive environment for continuous improvement",
     ],
     suitable:
-      "Perfect for those focused primarily on fitness goals who want the benefits of boxing training without competitive fighting.",
-    image: "/images/fitness-boxing.jpg",
+      "Great for adults of varying fitness levels who want to learn boxing in a structured, supportive group environment.",
+    image: "/images/adult-boxing.jpg",
+    schedule:
+      "Monday & Wednesday 6:00-7:00 PM, Morning sessions Monday & Wednesday 6:30-7:30 AM (by appointment)",
+  },
+  {
+    id: "advanced",
+    title: "Advanced Boxing",
+    icon: <FiAward size={42} className="text-boxing-red" />,
+    description:
+      "For experienced boxers looking to refine their skills and technique through more challenging training.",
+    details: [
+      "Advanced technical development and combination work",
+      "Tactical boxing strategies and counter techniques",
+      "Focused pad work and technical sparring options",
+      "Performance conditioning specifically for boxing",
+      "Preparation for more intensive training",
+    ],
+    suitable:
+      "Ideal for boxers with previous experience who want to elevate their skills without necessarily focusing on competition.",
+    image: "/images/advanced-boxing.jpg",
+    schedule: "Monday, Wednesday & Friday 6:00-7:00 PM",
+  },
+  {
+    id: "elite",
+    title: "Elite Boxing",
+    icon: <FiZap size={42} className="text-boxing-red" />,
+    description:
+      "Our competition-focused program for serious boxers preparing for amateur or professional bouts.",
+    details: [
+      "Competition-specific strategy and technique",
+      "Advanced sparring and fight simulation",
+      "Personalized competition preparation",
+      "Mental preparation and fight psychology",
+      "Comprehensive training plans for peak performance",
+    ],
+    suitable:
+      "Designed for dedicated boxers with significant experience who are looking to compete or already competing at amateur or professional levels.",
+    image: "/images/elite-boxing.jpg",
+    schedule: "Monday, Wednesday & Friday 6:00-7:30 PM",
   },
 ];
 
@@ -96,7 +121,7 @@ const ProgramsList = () => {
           </p>
         </div>
 
-        <div className="space-y-16">
+        <div className="space-y-20">
           {programs.map((program, index) => (
             <ProgramCard
               key={program.id}

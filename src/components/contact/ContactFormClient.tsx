@@ -126,6 +126,7 @@ const ContactFormClient = () => {
             <option value="Class Schedule">Class Schedule</option>
             <option value="Personal Training">Personal Training</option>
             <option value="Free Trial">Free Trial</option>
+            <option value="Become a trainer">Become a trainer</option>
             <option value="Other">Other</option>
           </select>
         </div>

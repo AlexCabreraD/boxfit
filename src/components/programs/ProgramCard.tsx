@@ -1,5 +1,6 @@
-import { FiCheck } from "react-icons/fi";
+import { FiCheck, FiClock } from "react-icons/fi";
 import { ProgramType } from "./ProgramsList";
+import Link from "next/link";
 
 type ProgramCardProps = {
   program: ProgramType;
@@ -43,12 +44,27 @@ const ProgramCard = ({ program, reverse = false }: ProgramCardProps) => {
           <p>{program.suitable}</p>
         </div>
 
-        <a
-          href="/free-trial"
-          className="inline-block bg-boxing-red text-white px-6 py-3 rounded-button font-bold hover:bg-opacity-90 transition-colors shadow-button"
-        >
-          Try a Free Class
-        </a>
+        <div className="mb-6 p-4 bg-gray-50 rounded-lg border-l-4 border-boxing-red">
+          <h4 className="font-semibold mb-2 flex items-center text-boxing-black">
+            <FiClock className="mr-2 text-boxing-red" /> Schedule:
+          </h4>
+          <p>{program.schedule}</p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4">
+          <Link
+            href="/free-trial"
+            className="inline-block bg-boxing-red text-white px-6 py-3 rounded-button font-bold hover:bg-opacity-90 transition-colors shadow-button"
+          >
+            Try a Free Class
+          </Link>
+          <Link
+            href="/schedule"
+            className="inline-block bg-boxing-black text-white px-6 py-3 rounded-button font-bold hover:bg-steel-gray transition-colors"
+          >
+            View Full Schedule
+          </Link>
+        </div>
       </div>
 
       <div className={reverse ? "lg:order-1" : ""}>

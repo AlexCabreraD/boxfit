@@ -6,32 +6,28 @@ import { IoStar } from "react-icons/io5";
 
 const testimonials = [
   {
-    name: "Michael R.",
-    image: "/default-avatar.jpg", // Replace with actual images when available
-    role: "Fitness Member, 8 months",
+    name: "Randy Vazquez",
+    role: "Fitness Member",
     quote:
-      "I've tried many gyms over the years, but BoxFit Utah has completely transformed my fitness journey. The coaches are attentive and the community is so supportive. I've lost 25 pounds and gained confidence I never had before.",
+      "Nicest Boxing Gym in Utah. I get excited every time I go train, the gym has a certain feel to it that only a boxing gym should have. All the bags are also new! The coaching is what makes it all the more worth it. If you haven't checked it out I would get signed up @BoxFit Utah",
     stars: 5,
   },
   {
-    name: "Sarah T.",
-    image: "/default-avatar.jpg",
+    name: "Christina Sanchez",
     role: "Parent of Junior Boxer",
     quote:
-      "My son has been in the kids' program for 6 months, and the change in him is remarkable. He's more disciplined, focused in school, and his confidence has skyrocketed. The coaches are amazing with children!",
+      "Tonight's the first time I came to check out this boxing gym and support my grandson, and I absolutely loved the vibe and the way Pablo the trainer conducted his class.Pablo's awesome! I love the atmosphere, and the way he teaches. I highly recommend Boxfit Utah!!",
     stars: 5,
   },
   {
-    name: "David L.",
-    image: "/default-avatar.jpg",
-    role: "Competitive Boxer, 2 years",
+    name: "Cassandra Carrasco",
+    role: "Parent of Junior Boxer",
     quote:
-      "Training at BoxFit has elevated my competitive game to levels I never thought possible. The professional coaching and personalized attention have helped me win my last three fights. This gym is the real deal.",
+      "Pablo is very knowledgeable when it comes to Boxing and Fitness. Class times are perfect for working adults/parents. Great equipment.",
     stars: 5,
   },
   {
     name: "Elena M.",
-    image: "/default-avatar.jpg",
     role: "Beginner, 3 months",
     quote:
       "I was intimidated to try boxing at first, but the team at BoxFit made me feel welcome from day one. As a complete beginner, I appreciate how they break down techniques and provide a supportive environment to learn.",
@@ -105,6 +101,11 @@ const Testimonials = () => {
       .map((_, index) => <IoStar key={index} className="text-accent-gold" />);
   };
 
+  // Get the first letter of the name for avatar fallback
+  const getInitial = (name: string) => {
+    return name.charAt(0).toUpperCase();
+  };
+
   return (
     <section className="py-20 bg-boxing-black text-white">
       <div className="container mx-auto px-4">
@@ -148,9 +149,17 @@ const Testimonials = () => {
               className={`transition-opacity duration-500 ${isAnimating ? "opacity-0" : "opacity-100"}`}
             >
               <div className="flex flex-col md:flex-row md:items-center mb-6">
-                <div className="w-20 h-20 mb-4 md:mb-0 md:mr-6 relative rounded-full overflow-hidden bg-steel-gray flex-shrink-0">
-                  {/* Replace with actual image when available */}
-                  <div className="w-full h-full rounded-full bg-boxing-black opacity-40"></div>
+                <div className="w-20 h-20 mb-4 md:mb-0 md:mr-6 relative rounded-full overflow-hidden bg-boxing-red flex-shrink-0 flex items-center justify-center text-2xl font-bold text-white">
+                  {testimonials[currentIndex].image &&
+                  testimonials[currentIndex].image !== "/default-avatar.jpg" ? (
+                    <img
+                      src={testimonials[currentIndex].image}
+                      alt={`${testimonials[currentIndex].name}'s avatar`}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    getInitial(testimonials[currentIndex].name)
+                  )}
                 </div>
 
                 <div>

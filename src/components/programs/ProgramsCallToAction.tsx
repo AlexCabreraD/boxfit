@@ -1,5 +1,13 @@
 import Link from "next/link";
-import { FiCalendar, FiPhoneCall } from "react-icons/fi";
+import {
+  FiCalendar,
+  FiPhoneCall,
+  FiUsers,
+  FiHeart,
+  FiTarget,
+  FiAward,
+  FiZap,
+} from "react-icons/fi";
 
 const ProgramsCallToAction = () => {
   return (
@@ -10,9 +18,32 @@ const ProgramsCallToAction = () => {
             <h2 className="font-accent text-3xl md:text-4xl mb-3">
               READY TO GET <span className="text-boxing-red">STARTED?</span>
             </h2>
-            <p className="text-lg md:text-xl mb-0">
+            <p className="text-lg md:text-xl mb-6">
               Join BoxFit Utah today and experience the transformation
             </p>
+
+            <div className="flex flex-wrap justify-center gap-3 mt-8 mb-12">
+              <div className="bg-steel-gray bg-opacity-20 py-2 px-4 rounded-full flex items-center">
+                <FiUsers className="text-boxing-red mr-2" size={16} />
+                <span>Beginner</span>
+              </div>
+              <div className="bg-steel-gray bg-opacity-20 py-2 px-4 rounded-full flex items-center">
+                <FiHeart className="text-boxing-red mr-2" size={16} />
+                <span>Kids</span>
+              </div>
+              <div className="bg-steel-gray bg-opacity-20 py-2 px-4 rounded-full flex items-center">
+                <FiTarget className="text-boxing-red mr-2" size={16} />
+                <span>Adult</span>
+              </div>
+              <div className="bg-steel-gray bg-opacity-20 py-2 px-4 rounded-full flex items-center">
+                <FiAward className="text-boxing-red mr-2" size={16} />
+                <span>Advanced</span>
+              </div>
+              <div className="bg-steel-gray bg-opacity-20 py-2 px-4 rounded-full flex items-center">
+                <FiZap className="text-boxing-red mr-2" size={16} />
+                <span>Elite</span>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -36,11 +67,11 @@ const ProgramsCallToAction = () => {
               <ul className="mb-6 space-y-2">
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-boxing-red rounded-full mr-2"></span>
-                  <span>No obligation or pressure</span>
+                  <span>Try any program that matches your skill level</span>
                 </li>
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-boxing-red rounded-full mr-2"></span>
-                  <span>Try any program that interests you</span>
+                  <span>No obligation or pressure</span>
                 </li>
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-boxing-red rounded-full mr-2"></span>
@@ -84,11 +115,11 @@ const ProgramsCallToAction = () => {
                 </li>
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-accent-gold rounded-full mr-2"></span>
-                  <span>Learn about our different programs</span>
+                  <span>Discuss which program is right for you</span>
                 </li>
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-accent-gold rounded-full mr-2"></span>
-                  <span>Discuss your goals with our coaches</span>
+                  <span>Speak with our expert coaches</span>
                 </li>
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-accent-gold rounded-full mr-2"></span>
