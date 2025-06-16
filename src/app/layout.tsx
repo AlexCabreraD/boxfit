@@ -33,6 +33,114 @@ export const metadata: Metadata = {
   ],
 };
 
+function LocalBusinessSchema() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    name: "BoxFit Utah",
+    description:
+      "Professional boxing training for all skill levels in Clearfield, Utah. Latino-owned gym established in 2020.",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://boxfit-utah.com",
+    telephone: "+1-385-626-3514",
+    // email: "info@boxfitutah.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "1740 S 300th W",
+      addressLocality: "Clearfield",
+      addressRegion: "UT",
+      postalCode: "84015",
+      addressCountry: "US",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "41.0882",
+      longitude: "-112.0323",
+    },
+    openingHours: ["Mo-Fr 06:00-21:00", "Sa 08:00-17:00"],
+    priceRange: "$99-$199",
+    foundingDate: "2020",
+    image: [],
+    sameAs: [
+      "https://facebook.com/boxfitutah",
+      "https://instagram.com/boxfitutah",
+    ],
+    sport: "Boxing",
+    amenityFeature: [
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Boxing Ring",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Heavy Bags",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Speed Bags",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Personal Training",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Group Classes",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Youth Programs",
+        value: true,
+      },
+    ],
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Free Trial Class",
+        description: "Experience BoxFit Utah with a free trial class",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      {
+        "@type": "Offer",
+        name: "Beginner Membership",
+        description: "2 classes per week with basic equipment",
+        price: "99",
+        priceCurrency: "USD",
+        eligibleDuration: "P1M",
+      },
+      {
+        "@type": "Offer",
+        name: "Standard Membership",
+        description: "Unlimited classes with equipment and personal training",
+        price: "149",
+        priceCurrency: "USD",
+        eligibleDuration: "P1M",
+      },
+      {
+        "@type": "Offer",
+        name: "Elite Membership",
+        description:
+          "All access including competition prep and 24/7 gym access",
+        price: "199",
+        priceCurrency: "USD",
+        eligibleDuration: "P1M",
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  );
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -43,6 +151,9 @@ export default function RootLayout({
       lang="en"
       className={`${barlow.variable} ${bebasNeue.variable} overflow-x-hidden`}
     >
+      <head>
+        <LocalBusinessSchema />
+      </head>
       <body className="font-primary bg-clean-white text-body-text flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow pt-16 md:pt-20">{children}</main>
