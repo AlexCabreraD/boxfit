@@ -20,8 +20,10 @@ export default function Analytics() {
       document.head.appendChild(script);
 
       window.gtag = function () {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         // eslint-disable-next-line prefer-rest-params
-        (window as any).dataLayer.push(arguments);
+        (window as never).dataLayer.push(arguments);
       };
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
