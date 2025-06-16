@@ -100,10 +100,10 @@ const ProgramsCallToAction = () => {
                 </div>
                 <div>
                   <h3 className="font-primary font-bold text-xl text-white">
-                    Schedule a Tour
+                    Choose Your Access Level
                   </h3>
                   <p className="text-neutral-300">
-                    See our facilities and meet our team
+                    Flexible membership options based on your schedule
                   </p>
                 </div>
               </div>
@@ -111,19 +111,19 @@ const ProgramsCallToAction = () => {
               <ul className="mb-6 space-y-2">
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-accent-gold rounded-full mr-2"></span>
-                  <span>Tour our state-of-the-art facility</span>
+                  <span>2-day access: $75/month</span>
                 </li>
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-accent-gold rounded-full mr-2"></span>
-                  <span>Discuss which program is right for you</span>
+                  <span>4-day access: $100/month</span>
                 </li>
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-accent-gold rounded-full mr-2"></span>
-                  <span>Speak with our expert coaches</span>
+                  <span>Additional access based on skill progression</span>
                 </li>
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-accent-gold rounded-full mr-2"></span>
-                  <span>Get pricing and membership details</span>
+                  <span>Competition prep access available</span>
                 </li>
               </ul>
 
@@ -131,13 +131,13 @@ const ProgramsCallToAction = () => {
                 href="/contact"
                 className="w-full text-center block bg-accent-gold text-boxing-black py-3 rounded-button font-bold hover:bg-opacity-90 transition-colors"
               >
-                Contact Us
+                Learn About Memberships
               </Link>
             </div>
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-steel-gray mb-2">Still have questions?</p>
+            <p className="text-steel-gray mb-2">Ready to start your journey?</p>
             <a
               href="tel:+13856263514"
               className="text-accent-gold hover:text-white transition-colors text-lg font-semibold flex items-center justify-center"

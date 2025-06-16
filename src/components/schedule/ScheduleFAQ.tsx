@@ -8,9 +8,19 @@ const faqs: FAQItem[] = [
       "If you're new to boxing, we recommend starting with our Beginner classes. These are designed to teach fundamentals in a supportive environment. If you have prior experience, our Adult or Advanced classes might be appropriate. For children ages 6-15, our Kids program is the perfect fit. You're also welcome to contact us for personalized recommendations.",
   },
   {
-    question: "Can I switch between different class times?",
+    question: "How does your access-based membership work?",
     answer:
-      "Absolutely! Your membership gives you access to all classes appropriate for your skill level. If you're a beginner, you can attend any beginner class on the schedule. This flexibility helps you maintain your training even when your personal schedule changes.",
+      "Our membership is based on how many days per week you want to access the gym. We offer 2-day access for $75/month and 4-day access for $100/month. This means you can attend any appropriate classes within your access days. Additional access may be granted based on skill progression, competition preparation, or by request to Coach Pablo.",
+  },
+  {
+    question: "Can I attend any class with my membership?",
+    answer:
+      "You can attend any class that's appropriate for your skill level within your access days. For example, with 2-day access, you can choose any 2 days per week to attend classes. With 4-day access, you have more flexibility. As you progress, you may gain access to more advanced classes regardless of your membership level.",
+  },
+  {
+    question: "Can I get more access days if I need them?",
+    answer:
+      "Yes! Additional access beyond your membership can be granted by Coach Pablo based on your improvement, competition preparation needs, or by request. We want to support your boxing journey and will work with you to ensure you have the access needed to reach your goals.",
   },
   {
     question: "Do I need to register for classes in advance?",
@@ -20,17 +30,17 @@ const faqs: FAQItem[] = [
   {
     question: "What if I can't make my usual class time?",
     answer:
-      "Life happens! If you can't make your regular class, feel free to attend another session that fits your schedule and skill level. For members who consistently miss classes due to schedule conflicts, we offer make-up sessions and personal training options.",
+      "Life happens! With our access-based membership, you have flexibility to attend different classes within your access days. If you typically attend Monday and Wednesday but need to switch to Tuesday and Thursday one week, that's perfectly fine as long as you stay within your access limit. This flexibility is one of the benefits of our day-based membership structure.",
   },
   {
     question: "Are there any age restrictions for classes?",
     answer:
-      "Our Kids program is designed for children ages 6-15. Adult classes are for individuals 16 and older. Advanced and Elite classes typically require prior boxing experience and coach approval, regardless of age.",
+      "Our Kids program is designed for children ages 6-15. Adult classes are for individuals 16 and older. Advanced and Elite classes typically require prior boxing experience and coach approval, regardless of age. Your access level doesn't restrict which age-appropriate classes you can attend.",
   },
   {
     question: "How often should I attend classes to see progress?",
     answer:
-      "For noticeable improvement, we recommend attending at least 2-3 classes per week. Consistency is key in boxing training. Even attending once a week will provide benefits, while serious competitors typically train 4-5 times weekly under coach guidance.",
+      "For noticeable improvement, we recommend attending at least 2-3 classes per week, which aligns perfectly with our membership options. Our 2-day access ($75/month) is great for beginners, while 4-day access ($100/month) provides more intensive training opportunities. Consistency within your access level is key to seeing results.",
   },
 ];
 
@@ -43,7 +53,8 @@ const ScheduleFAQ = () => {
             FREQUENTLY ASKED <span className="text-boxing-red">QUESTIONS</span>
           </h2>
           <p className="text-lg max-w-2xl mx-auto">
-            Common questions about our class schedule and booking
+            Common questions about our class schedule and access-based
+            memberships
           </p>
         </div>
 

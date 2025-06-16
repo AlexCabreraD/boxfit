@@ -4,46 +4,45 @@ import Link from "next/link";
 const SchedulePricing = () => {
   const pricingPlans = [
     {
-      name: "Beginner",
-      price: "$99",
+      name: "2-Day Access",
+      price: "$75",
       period: "/month",
       features: [
-        "2 classes per week",
+        "2 days per week gym access",
+        "Access to beginner and appropriate skill level classes",
         "Basic equipment provided",
-        "Access to beginner classes",
         "Monthly progress assessment",
-        "Gym access during class times",
+        "Supportive community environment",
       ],
       recommended: false,
       color: "bg-boxing-red",
     },
     {
-      name: "Standard",
-      price: "$149",
+      name: "4-Day Access",
+      price: "$100",
       period: "/month",
       features: [
-        "Unlimited classes",
+        "4 days per week gym access",
+        "Access to all appropriate skill level classes",
         "Basic equipment provided",
-        "Access to all regular classes",
         "Bi-weekly progress assessment",
-        "Full gym access during open hours",
-        "One personal training session monthly",
+        "Priority class scheduling",
+        "Enhanced training flexibility",
       ],
       recommended: true,
       color: "bg-accent-gold",
     },
     {
-      name: "Elite",
-      price: "$199",
-      period: "/month",
+      name: "Advanced Access",
+      price: "Contact Us",
+      period: "",
       features: [
-        "Unlimited classes",
-        "Premium equipment provided",
-        "Access to all classes including elite",
-        "Weekly progress assessment",
-        "Full gym access 24/7",
-        "Two personal training sessions monthly",
-        "Competition preparation support",
+        "Additional access based on skill level",
+        "Competition preparation access",
+        "Advanced training opportunities",
+        "Coach discretion for increased access",
+        "Personalized training plans",
+        "Premium coaching attention",
       ],
       recommended: false,
       color: "bg-boxing-black",
@@ -58,7 +57,7 @@ const SchedulePricing = () => {
             MEMBERSHIP <span className="text-boxing-red">OPTIONS</span>
           </h2>
           <p className="text-lg max-w-2xl mx-auto">
-            Choose the plan that fits your goals and schedule
+            Choose the access level that fits your schedule and commitment
           </p>
         </div>
 
@@ -85,7 +84,11 @@ const SchedulePricing = () => {
                 <h3 className="font-accent text-2xl mb-2">{plan.name}</h3>
                 <div className="flex items-baseline mb-6">
                   <span className="text-3xl font-bold">{plan.price}</span>
-                  <span className="text-caption-text ml-1">{plan.period}</span>
+                  {plan.period && (
+                    <span className="text-caption-text ml-1">
+                      {plan.period}
+                    </span>
+                  )}
                 </div>
 
                 <ul className="space-y-3 mb-8">
@@ -118,11 +121,47 @@ const SchedulePricing = () => {
           ))}
         </div>
 
+        <div className="mt-12 bg-white p-8 rounded-card shadow-card">
+          <h3 className="font-accent text-2xl mb-4 text-boxing-black text-center">
+            <span className="text-boxing-red">ADDITIONAL ACCESS</span>{" "}
+            OPPORTUNITIES
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="font-semibold text-lg mb-2">Skill-Based Access</h4>
+              <p className="text-caption-text">
+                As you progress and demonstrate improvement, Coach Pablo may
+                grant additional access days to support your development and
+                training goals at his discretion.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-lg mb-2">
+                Competition Preparation
+              </h4>
+              <p className="text-caption-text">
+                Members preparing for competitions may receive expanded access
+                to support intensive training schedules and competition
+                readiness, or can request additional access.
+              </p>
+            </div>
+          </div>
+          <div className="mt-6 text-center bg-gray-50 p-6 rounded-lg">
+            <p className="text-sm text-caption-text">
+              <strong>Note:</strong> Additional access beyond your membership
+              level is granted based on skill progression, competition
+              preparation needs, or by request to Coach Pablo. We believe in
+              supporting our members&#39; growth and will work with you to
+              ensure you have the access you need to achieve your goals.
+            </p>
+          </div>
+        </div>
+
         <div className="mt-12 text-center">
-          <p className="text-caption-text mb-4">
-            We also offer special rates for students, military, and family
-            memberships
-          </p>
+          {/*<p className="text-caption-text mb-4">*/}
+          {/*  We also offer special rates for students, military, and family*/}
+          {/*  memberships*/}
+          {/*</p>*/}
           <Link
             href="/contact"
             className="inline-block bg-boxing-red text-white px-6 py-3 rounded-button font-bold hover:bg-opacity-90 transition-colors"

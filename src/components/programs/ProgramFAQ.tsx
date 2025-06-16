@@ -9,7 +9,17 @@ const faqs: FAQItem[] = [
   {
     question: "How do I know which program is right for me?",
     answer:
-      "If you're new to boxing, our Beginner Boxing program is the perfect starting point. For children ages 6-15, our Kids Boxing program provides age-appropriate training. If you already have some experience, our Adult Boxing program welcomes all skill levels. For those with substantial experience, our Advanced and Elite programs offer more technical and competitive training. You're also welcome to speak with our coaches for personalized recommendations.",
+      "If you're new to boxing, we recommend starting with our Beginner classes. These are designed to teach fundamentals in a supportive environment. If you have prior experience, our Adult or Advanced classes might be appropriate. For children ages 6-15, our Kids program is the perfect fit. You're also welcome to contact us for personalized recommendations.",
+  },
+  {
+    question: "How does your membership pricing work?",
+    answer:
+      "Our membership is based on how many days per week you want to access the gym. We offer 2-day access for $75/month and 4-day access for $100/month. Additional access may be granted based on your skill progression, competition preparation needs, or by request to Coach Pablo. This flexible approach ensures you only pay for the access you need.",
+  },
+  {
+    question: "Can I get more than 4 days of access per week?",
+    answer:
+      "Yes! Additional access beyond your membership level can be granted by Coach Pablo based on your skill development, improvement, competition preparation needs, or by request. We believe in supporting our members' growth and will work with you to ensure you have the access needed to achieve your goals.",
   },
   {
     question: "Do I need any equipment to start boxing?",
@@ -35,12 +45,12 @@ const faqs: FAQItem[] = [
   {
     question: "Can I switch between different programs as I progress?",
     answer:
-      "Absolutely! We encourage members to advance through our programs as their skills develop. Many members start in our Beginner program and progress to Adult, Advanced, and sometimes Elite programs. Our coaches will help guide your progression and let you know when you're ready to transition to more advanced training.",
+      "Absolutely! We encourage members to advance through our programs as their skills develop. Many members start in our Beginner program and progress to Adult, Advanced, and sometimes Elite programs. Our coaches will help guide your progression and let you know when you're ready to transition to more advanced training. Your access level can also be adjusted as you progress.",
   },
   {
     question: "How often should I train to see results?",
     answer:
-      "For noticeable improvements in technique and fitness, we recommend training 2-3 times per week. Consistency is more important than frequency. One quality session per week will still provide benefits, while serious competitors in our Elite program typically train 4-5 times weekly under coach guidance.",
+      "For noticeable improvements in technique and fitness, we recommend training 2-3 times per week, which aligns perfectly with our membership options. Consistency is more important than frequency. Our 2-day access membership is perfect for beginners, while our 4-day access works well for those wanting more intensive training. Serious competitors may request additional access for more frequent training.",
   },
   {
     question: "Do I need to be in good shape to start boxing?",

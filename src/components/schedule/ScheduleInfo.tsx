@@ -1,4 +1,11 @@
-import { FiUsers, FiStar, FiSunrise, FiSunset } from "react-icons/fi";
+import {
+  FiUsers,
+  FiStar,
+  FiSunrise,
+  FiSunset,
+  FiCalendar,
+  FiTrendingUp,
+} from "react-icons/fi";
 
 const ScheduleInfo = () => {
   return (
@@ -9,11 +16,27 @@ const ScheduleInfo = () => {
             CLASS <span className="text-boxing-red">INFORMATION</span>
           </h2>
           <p className="text-lg max-w-2xl mx-auto">
-            Everything you need to know about our boxing classes
+            Everything you need to know about our boxing classes and
+            access-based membership
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="bg-white rounded-card shadow-card p-8 hover:shadow-lg transition-shadow duration-300">
+            <div className="flex items-center mb-4">
+              <div className="w-12 h-12 rounded-full bg-boxing-red flex items-center justify-center mr-4">
+                <FiCalendar className="text-white text-xl" />
+              </div>
+              <h3 className="font-semibold text-lg">Access-Based Membership</h3>
+            </div>
+            <p className="text-caption-text">
+              Our memberships are based on days per week: 2-day access
+              ($75/month) or 4-day access ($100/month). Choose any classes
+              within your access level that match your skill. Additional access
+              available based on progression and needs.
+            </p>
+          </div>
+
           <div className="bg-white rounded-card shadow-card p-8 hover:shadow-lg transition-shadow duration-300">
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 rounded-full bg-boxing-red flex items-center justify-center mr-4">
@@ -54,7 +77,7 @@ const ScheduleInfo = () => {
               Start your day with our morning boxing sessions. These classes
               focus on energizing workouts that improve technique while boosting
               your metabolism. Perfect for early risers who want to fit training
-              into their busy schedules.
+              into their busy schedules. Available by appointment.
             </p>
           </div>
 
@@ -70,6 +93,21 @@ const ScheduleInfo = () => {
               These sessions provide the perfect outlet for stress relief while
               improving your boxing skills and overall fitness in a supportive
               community environment.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-card shadow-card p-8 hover:shadow-lg transition-shadow duration-300">
+            <div className="flex items-center mb-4">
+              <div className="w-12 h-12 rounded-full bg-boxing-red flex items-center justify-center mr-4">
+                <FiTrendingUp className="text-white text-xl" />
+              </div>
+              <h3 className="font-semibold text-lg">Skill Progression</h3>
+            </div>
+            <p className="text-caption-text">
+              As you improve and demonstrate progress, Coach Pablo may grant
+              additional access days or advanced class privileges. We support
+              your growth with flexible access that adapts to your developing
+              skills and goals.
             </p>
           </div>
         </div>
@@ -111,6 +149,19 @@ const ScheduleInfo = () => {
                 stretching session to aid recovery and prevent injury.
               </p>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-8 bg-boxing-black text-white p-6 rounded-card">
+          <div className="text-center">
+            <h3 className="font-accent text-xl mb-3">
+              FLEXIBLE <span className="text-boxing-red">ACCESS SYSTEM</span>
+            </h3>
+            <p className="text-steel-gray">
+              Our access-based membership gives you the freedom to choose which
+              days work best for your schedule, while ensuring you get the
+              training frequency that matches your goals and budget.
+            </p>
           </div>
         </div>
       </div>
