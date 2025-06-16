@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import TrainerHero from "@/components/trainers/TrainerHero";
 import TrainerProfile from "@/components/trainers/TrainerProfile";
-import TrainerGallery from "@/components/trainers/TrainerGallery";
 import JoinOurTeam from "@/components/trainers/JoinOurTeam";
 import CallToAction from "@/components/shared/CallToAction";
 
@@ -25,7 +24,7 @@ export default function TrainersPage() {
     <>
       <TrainerHero />
       <TrainerProfile />
-      <TrainerGallery />
+      {/*<TrainerGallery />*/}
       <JoinOurTeam />
       <CallToAction />
     </>
