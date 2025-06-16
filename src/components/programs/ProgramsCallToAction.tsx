@@ -84,7 +84,7 @@ const ProgramsCallToAction = () => {
               </ul>
 
               <Link
-                href="/free-trial"
+                href="/membership"
                 className="w-full text-center block bg-boxing-red text-white py-3 rounded-button font-bold hover:bg-opacity-90 transition-colors"
               >
                 Book Free Trial

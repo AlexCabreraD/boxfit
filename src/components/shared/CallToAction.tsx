@@ -18,7 +18,7 @@ const CallToAction = () => {
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
-              href="/free-trial"
+              href="/membership"
               className="bg-white text-boxing-red hover:bg-accent-gold hover:text-white px-8 py-3 rounded-button font-bold transition-all flex items-center justify-center gap-2 text-lg"
             >
               Start Your Free Trial <FiArrowRight />

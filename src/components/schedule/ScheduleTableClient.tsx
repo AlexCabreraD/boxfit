@@ -186,7 +186,7 @@ const ScheduleTableClient = ({ classSchedule }: ScheduleTableClientProps) => {
       {filteredClasses().length > 0 && (
         <div className="p-4 bg-gray-50 border-t border-gray-200 flex justify-center">
           <a
-            href="/free-trial"
+            href="/membership"
             className="bg-boxing-red text-white px-6 py-2 rounded-button font-bold hover:bg-opacity-90 transition-colors"
           >
             Book a Free Trial Class

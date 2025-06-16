@@ -108,7 +108,7 @@ const ScheduleBooking = () => {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/free-trial"
+                href="/membership"
                 className="bg-boxing-red hover:bg-opacity-90 text-white px-8 py-3 rounded-button font-bold transition-all flex items-center justify-center gap-2 text-lg shadow-button"
               >
                 Book Free Trial

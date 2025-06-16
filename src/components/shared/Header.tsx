@@ -41,7 +41,7 @@ const Header = () => {
             </Link>
           ))}
           <Link
-            href="/free-trial"
+            href="/membership"
             className="bg-boxing-red text-white px-5 py-2 rounded-button font-bold hover:bg-opacity-90 transition-all"
           >
             Free Trial
@@ -79,7 +79,7 @@ const Header = () => {
                   </Link>
                 ))}
                 <Link
-                  href="/free-trial"
+                  href="/membership"
                   className="bg-boxing-red text-white px-5 py-2 rounded-button font-bold hover:bg-opacity-90 transition-all inline-block w-fit"
                   onClick={() => setIsMenuOpen(false)}
                 >

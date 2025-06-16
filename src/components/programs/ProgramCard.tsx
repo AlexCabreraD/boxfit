@@ -57,7 +57,7 @@ const ProgramCard = ({ program, reverse = false }: ProgramCardProps) => {
 
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
-            href="/free-trial"
+            href="/membership"
             className="inline-block bg-boxing-red text-white px-6 py-3 rounded-button font-bold hover:bg-opacity-90 transition-colors shadow-button"
           >
             Try a Free Class

@@ -29,7 +29,7 @@ const Hero = () => {
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              href="/free-trial"
+              href="/membership"
               className="bg-boxing-red hover:bg-opacity-90 text-white px-8 py-3 rounded-button font-bold transition-all flex items-center justify-center sm:justify-start gap-2 text-lg"
             >
               Start Your Free Trial <FiArrowRight className="ml-1" />
