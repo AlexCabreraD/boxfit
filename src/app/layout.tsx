@@ -40,7 +40,7 @@ function LocalBusinessSchema() {
       "Professional boxing training for all skill levels in Clearfield, Utah. Latino-owned gym established in 2020.",
     url: process.env.NEXT_PUBLIC_SITE_URL || "https://boxfit-utah.com",
     telephone: "+1-385-626-3514",
-    // email: "Boxfitutah@gmail.com",
+    email: "Boxfitutah@gmail.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "1740 S 300th W",
@@ -154,7 +154,7 @@ export default function RootLayout({
         <LocalBusinessSchema />
       </head>
       <body className="font-primary bg-clean-white text-body-text flex flex-col min-h-screen">
-        <main>{children}</main>
+        {children}
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
-// src/components/membership/components/SuccessMessage.tsx
+import Link from "next/link";
+import { FiHome, FiCalendar } from "react-icons/fi";
 import { FormData } from "@/components/membership/types/membershipTypes";
 
 interface SuccessMessageProps {
@@ -63,29 +64,48 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({ formData }) => {
             </li>
             <li className="flex items-start">
               <span className="font-semibold mr-2">4.</span>
-              <span>Receive your welcome packet and begin training!</span>
+              <span>Begin training!</span>
             </li>
           </ol>
         </div>
 
         <div className="border-t pt-6">
-          <p className="text-gray-600 mb-2">Questions? Contact us:</p>
-          <p className="font-semibold text-lg">
-            <a
-              href="tel:+13856263514"
-              className="text-red-600 hover:text-red-700"
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
+            <Link
+              href="/"
+              className="inline-flex items-center justify-center px-6 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors font-medium"
             >
-              (385) 626-3514
-            </a>
-          </p>
-          <p className="text-gray-600">
-            <a
-              href="mailto:Boxfitutah@gmail.com"
-              className="text-red-600 hover:text-red-700"
+              <FiHome className="mr-2" />
+              Back to Home
+            </Link>
+            <Link
+              href="/schedule"
+              className="inline-flex items-center justify-center px-6 py-3 border border-red-600 text-red-600 rounded-md hover:bg-red-50 transition-colors font-medium"
             >
-              Boxfitutah@gmail.com
-            </a>
-          </p>
+              <FiCalendar className="mr-2" />
+              View Class Schedule
+            </Link>
+          </div>
+
+          <div className="text-center">
+            <p className="text-gray-600 mb-2">Questions? Contact us:</p>
+            <p className="font-semibold text-lg">
+              <a
+                href="tel:+13856263514"
+                className="text-red-600 hover:text-red-700"
+              >
+                (385) 626-3514
+              </a>
+            </p>
+            <p className="text-gray-600">
+              <a
+                href="mailto:Boxfitutah@gmail.com"
+                className="text-red-600 hover:text-red-700"
+              >
+                Boxfitutah@gmail.com
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </div>

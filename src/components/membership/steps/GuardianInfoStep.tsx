@@ -1,4 +1,3 @@
-// src/components/membership/steps/GuardianInfoStep.tsx
 import { PersonalInfoStepProps } from "@/components/membership/steps/PersonalInfoStep";
 
 const GuardianInfoStep: React.FC<PersonalInfoStepProps> = ({
