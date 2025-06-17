@@ -1,6 +1,13 @@
 import { PersonalInfoStepProps } from "@/components/membership/steps/PersonalInfoStep";
 import { FormData } from "@/components/membership/types/membershipTypes";
 
+interface Agreement {
+  name: string;
+  title: string;
+  content: string;
+  optional?: boolean;
+}
+
 const LegalWaiversStep: React.FC<PersonalInfoStepProps> = ({
   formData,
   updateFormData,
@@ -10,7 +17,7 @@ const LegalWaiversStep: React.FC<PersonalInfoStepProps> = ({
     updateFormData({ [name]: checked });
   };
 
-  const agreements = [
+  const agreements: Agreement[] = [
     {
       name: "agreeToLiabilityWaiver",
       title: "Liability Waiver and Release of Claims",
