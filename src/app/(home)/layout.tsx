@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Barlow, Bebas_Neue } from "next/font/google";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
-import "./globals.css";
+import "../globals.css";
 
 const barlow = Barlow({
   variable: "--font-primary",
@@ -156,7 +156,9 @@ export default function RootLayout({
         <LocalBusinessSchema />
       </head>
       <body className="font-primary bg-clean-white text-body-text flex flex-col min-h-screen">
-        <main>{children}</main>
+        <Header />
+        <main className="flex-grow pt-16 md:pt-20">{children}</main>
+        <Footer />
       </body>
     </html>
   );

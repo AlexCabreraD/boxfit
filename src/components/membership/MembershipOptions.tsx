@@ -172,39 +172,6 @@ const MembershipOptions = () => {
           ))}
         </div>
 
-        <div className="mt-12 bg-white p-8 rounded-card shadow-card max-w-4xl mx-auto">
-          <h3 className="font-accent text-2xl mb-4 text-boxing-black text-center">
-            <span className="text-boxing-red">ADDITIONAL ACCESS</span>{" "}
-            OPPORTUNITIES
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="flex items-start">
-              <FiCheck className="text-boxing-red mr-3 mt-1 flex-shrink-0" />
-              <div>
-                <h4 className="font-semibold text-lg mb-2">
-                  Skill-Based Access
-                </h4>
-                <p className="text-caption-text">
-                  As you progress and demonstrate improvement, Coach Pablo may
-                  grant additional access days to support your development.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start">
-              <FiCheck className="text-boxing-red mr-3 mt-1 flex-shrink-0" />
-              <div>
-                <h4 className="font-semibold text-lg mb-2">
-                  Competition Preparation
-                </h4>
-                <p className="text-caption-text">
-                  Members preparing for competitions may receive expanded access
-                  to support intensive training schedules.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div className="mt-8 text-center">
           <p className="text-caption-text mb-4">
             Questions about our membership options?

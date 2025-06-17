@@ -1,4 +1,21 @@
+// src/app/membership/layout.tsx
 import type { Metadata } from "next";
+import { Barlow, Bebas_Neue } from "next/font/google";
+import "../globals.css";
+
+const barlow = Barlow({
+  variable: "--font-primary",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  display: "swap",
+});
+
+const bebasNeue = Bebas_Neue({
+  variable: "--font-accent",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Membership Options | BoxFit Utah - Boxing Training in Clearfield",
@@ -21,5 +38,14 @@ export default function MembershipLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <html
+      lang="en"
+      className={`${barlow.variable} ${bebasNeue.variable} overflow-x-hidden`}
+    >
+      <body className="font-primary bg-clean-white text-body-text">
+        {children}
+      </body>
+    </html>
+  );
 }
