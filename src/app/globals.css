@@ -106,7 +106,7 @@ body {
 }
 
 .bg-cta-pattern {
-  background-image: linear-gradient(rgba(213, 0, 0, 0.9), rgba(213, 0, 0, 0.9)), url('/images/cta-bg.jpg');
+  background-image: linear-gradient(rgba(213, 0, 0, 0.9), rgba(213, 0, 0, 0.9));
   background-size: cover;
   background-position: center;
 }
