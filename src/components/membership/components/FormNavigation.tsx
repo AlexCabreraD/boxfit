@@ -1,4 +1,3 @@
-// src/components/membership/components/FormNavigation.tsx
 import { FormStep } from "@/components/membership/types/membershipTypes";
 
 interface FormNavigationProps {
@@ -22,7 +21,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
 }) => {
   return (
     <div className="mt-8 pt-6 border-t flex justify-between">
-      {currentStep > 1 && (
+      {currentStep > 0 && (
         <button
           type="button"
           onClick={onPrevious}
@@ -33,18 +32,18 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
       )}
 
       <div className="ml-auto">
-        {currentStep < totalSteps ? (
+        {currentStep < totalSteps - 1 ? (
           <button
             type="button"
             onClick={onNext}
             disabled={!canProceed}
             className={`px-6 py-2 rounded-md font-medium transition-colors ${
               canProceed
-                ? "bg-red-600 text-white hover:bg-red-700"
+                ? "bg-red-600 text-white hover:bg-red-700 cursor-pointer"
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
           >
-            Next Step
+            {currentStep === 0 ? "Continue with Selected Plan" : "Next Step"}
           </button>
         ) : (
           <button

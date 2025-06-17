@@ -34,7 +34,7 @@ const FormProgress: React.FC<FormProgressProps> = ({ currentStep, steps }) => {
                           : "bg-gray-300 text-gray-600"
                     }`}
                   >
-                    {isCompleted ? "✓" : step.number}
+                    {isCompleted ? "✓" : step.number + 1}
                   </div>
                   <span
                     className={`text-xs font-medium ${

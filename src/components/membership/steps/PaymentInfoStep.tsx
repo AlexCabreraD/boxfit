@@ -12,6 +12,8 @@ const PaymentInfoStep: React.FC<PersonalInfoStepProps> = ({
   };
 
   const membershipPrice = formData.membershipPlan === "2-day" ? "$75" : "$100";
+  const membershipName =
+    formData.membershipPlan === "2-day" ? "2-Day Access" : "4-Day Access";
 
   return (
     <div className="space-y-6">
@@ -20,70 +22,31 @@ const PaymentInfoStep: React.FC<PersonalInfoStepProps> = ({
           Membership Selection & Payment Information
         </h2>
         <p className="text-gray-600">
-          Choose your membership plan and provide payment details for monthly
+          Confirm your membership plan and provide payment details for monthly
           billing.
         </p>
       </div>
 
-      {/* Membership Plan Selection */}
-      <div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
-          Select Your Membership Plan
+      {/* Selected Membership Plan Display */}
+      <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-green-800 mb-2">
+          Selected Membership Plan
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <label
-            className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
-              formData.membershipPlan === "2-day"
-                ? "border-red-500 bg-red-50"
-                : "border-gray-200"
-            }`}
-          >
-            <input
-              type="radio"
-              name="membershipPlan"
-              value="2-day"
-              checked={formData.membershipPlan === "2-day"}
-              onChange={handleChange}
-              className="sr-only"
-            />
-            <div className="flex items-center justify-between mb-2">
-              <h4 className="font-semibold text-lg">2-Day Access</h4>
-              <span className="text-2xl font-bold">$75/mo</span>
-            </div>
-            <ul className="text-sm text-gray-600 space-y-1">
-              <li>• 2 days per week gym access</li>
-              <li>• Access to appropriate skill level classes</li>
-              <li>• Basic equipment provided</li>
-              <li>• Perfect for beginners</li>
-            </ul>
-          </label>
-
-          <label
-            className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
-              formData.membershipPlan === "4-day"
-                ? "border-red-500 bg-red-50"
-                : "border-gray-200"
-            }`}
-          >
-            <input
-              type="radio"
-              name="membershipPlan"
-              value="4-day"
-              checked={formData.membershipPlan === "4-day"}
-              onChange={handleChange}
-              className="sr-only"
-            />
-            <div className="flex items-center justify-between mb-2">
-              <h4 className="font-semibold text-lg">4-Day Access</h4>
-              <span className="text-2xl font-bold">$100/mo</span>
-            </div>
-            <ul className="text-sm text-gray-600 space-y-1">
-              <li>• 4 days per week gym access</li>
-              <li>• Access to all appropriate classes</li>
-              <li>• Enhanced training flexibility</li>
-              <li>• Most popular choice</li>
-            </ul>
-          </label>
+        <div className="flex items-center justify-between">
+          <div>
+            <h4 className="font-semibold text-lg">{membershipName}</h4>
+            <p className="text-green-700">
+              {formData.membershipPlan === "2-day"
+                ? "2 days per week access with basic equipment and coaching"
+                : "4 days per week access with enhanced training opportunities"}
+            </p>
+          </div>
+          <div className="text-right">
+            <span className="text-2xl font-bold text-green-800">
+              {membershipPrice}
+            </span>
+            <span className="text-green-600 ml-1">/month</span>
+          </div>
         </div>
       </div>
 
@@ -238,11 +201,7 @@ const PaymentInfoStep: React.FC<PersonalInfoStepProps> = ({
         <div className="bg-gray-50 rounded-lg p-4 space-y-2">
           <div className="flex justify-between">
             <span className="text-gray-600">Selected Plan:</span>
-            <span className="font-semibold">
-              {formData.membershipPlan === "2-day"
-                ? "2-Day Access"
-                : "4-Day Access"}
-            </span>
+            <span className="font-semibold">{membershipName}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-600">Monthly Fee:</span>

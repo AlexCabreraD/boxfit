@@ -1,4 +1,3 @@
-// src/components/membership/MembershipSignupForm.tsx
 import React, { useState } from "react";
 import PersonalInfoStep from "./steps/PersonalInfoStep";
 import MedicalInfoStep from "./steps/MedicalInfoStep";
@@ -6,6 +5,7 @@ import GuardianInfoStep from "./steps/GuardianInfoStep";
 import LegalWaiversStep from "./steps/LegalWaiversStep";
 import SignaturesStep from "./steps/SignaturesStep";
 import PaymentInfoStep from "./steps/PaymentInfoStep";
+import MembershipSelection from "./steps/MembershipSelection";
 import { FormData, FormStep } from "./types/membershipTypes";
 import { submitToAirtable } from "./utils/airtableSubmit";
 import FormProgress from "./components/FormProgress";
@@ -13,7 +13,7 @@ import FormNavigation from "./components/FormNavigation";
 import SuccessMessage from "./components/SuccessMessage";
 
 const MembershipSignupForm = () => {
-  const [currentStep, setCurrentStep] = useState<FormStep>(1);
+  const [currentStep, setCurrentStep] = useState<FormStep>(0); // Start at 0 for membership selection
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -68,7 +68,7 @@ const MembershipSignupForm = () => {
     guardianZipCode: "",
 
     // Membership Selection
-    membershipPlan: "2-day", // '2-day' or '4-day'
+    membershipPlan: "", // Start empty, user will select
     startDate: "",
 
     // Legal Agreements
@@ -81,6 +81,8 @@ const MembershipSignupForm = () => {
     agreeToPhotoRelease: false,
     agreeToCancellationPolicy: false,
     agreeToPaymentTerms: false,
+    agreeToClaimsProcedures: false,
+    agreeToIndemnification: false,
 
     // Payment Information
     paymentMethod: "card",
@@ -124,13 +126,17 @@ const MembershipSignupForm = () => {
 
   const validateCurrentStep = (): boolean => {
     switch (currentStep) {
+      case 0: // Membership Selection
+        return !!formData.membershipPlan;
+
       case 1: // Personal Info
         return !!(
           formData.firstName &&
           formData.lastName &&
           formData.dateOfBirth &&
-          formData.email &&
-          formData.phone &&
+          // Email and phone are optional for minors
+          (!formData.isMinor ? formData.email : true) &&
+          (!formData.isMinor ? formData.phone : true) &&
           formData.address &&
           formData.city &&
           formData.zipCode &&
@@ -139,10 +145,7 @@ const MembershipSignupForm = () => {
           formData.emergencyContactRelationship
         );
 
-      case 2: // Medical Info
-        return true; // Medical info is optional but encouraged
-
-      case 3: // Guardian Info
+      case 2: // Guardian Info
         if (!formData.isMinor) return true;
         return !!(
           formData.guardianFirstName &&
@@ -153,6 +156,9 @@ const MembershipSignupForm = () => {
           formData.guardianIdFile
         );
 
+      case 3: // Medical Info
+        return true; // Medical info is optional but encouraged
+
       case 4: // Legal Waivers
         return (
           formData.agreeToLiabilityWaiver &&
@@ -162,7 +168,9 @@ const MembershipSignupForm = () => {
           formData.agreeToCodeOfConduct &&
           formData.agreeToEquipmentGuidelines &&
           formData.agreeToCancellationPolicy &&
-          formData.agreeToPaymentTerms
+          formData.agreeToPaymentTerms &&
+          formData.agreeToClaimsProcedures &&
+          formData.agreeToIndemnification
         );
 
       case 5: // Signatures
@@ -189,8 +197,8 @@ const MembershipSignupForm = () => {
   const handleNext = () => {
     if (validateCurrentStep()) {
       // Skip guardian step if not a minor
-      if (currentStep === 2 && !formData.isMinor) {
-        setCurrentStep(4);
+      if (currentStep === 1 && !formData.isMinor) {
+        setCurrentStep(3);
       } else {
         setCurrentStep((prev) => (prev + 1) as FormStep);
       }
@@ -199,8 +207,8 @@ const MembershipSignupForm = () => {
 
   const handlePrevious = () => {
     // Skip guardian step if not a minor (going backwards)
-    if (currentStep === 4 && !formData.isMinor) {
-      setCurrentStep(2);
+    if (currentStep === 3 && !formData.isMinor) {
+      setCurrentStep(1);
     } else {
       setCurrentStep((prev) => (prev - 1) as FormStep);
     }
@@ -228,9 +236,10 @@ const MembershipSignupForm = () => {
   }
 
   const steps = [
+    { number: 0, title: "Select Plan" },
     { number: 1, title: "Personal Info" },
-    { number: 2, title: "Medical Info" },
-    { number: 3, title: "Guardian Info", conditional: formData.isMinor },
+    { number: 2, title: "Guardian Info", conditional: formData.isMinor },
+    { number: 3, title: "Medical Info" },
     { number: 4, title: "Legal Waivers" },
     { number: 5, title: "Signatures" },
     { number: 6, title: "Payment Info" },
@@ -261,6 +270,13 @@ const MembershipSignupForm = () => {
             </div>
           )}
 
+          {currentStep === 0 && (
+            <MembershipSelection
+              formData={formData}
+              updateFormData={updateFormData}
+            />
+          )}
+
           {currentStep === 1 && (
             <PersonalInfoStep
               formData={formData}
@@ -268,15 +284,15 @@ const MembershipSignupForm = () => {
             />
           )}
 
-          {currentStep === 2 && (
-            <MedicalInfoStep
+          {currentStep === 2 && formData.isMinor && (
+            <GuardianInfoStep
               formData={formData}
               updateFormData={updateFormData}
             />
           )}
 
-          {currentStep === 3 && formData.isMinor && (
-            <GuardianInfoStep
+          {currentStep === 3 && (
+            <MedicalInfoStep
               formData={formData}
               updateFormData={updateFormData}
             />

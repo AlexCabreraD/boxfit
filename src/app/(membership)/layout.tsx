@@ -1,4 +1,4 @@
-// src/app/membership/layout.tsx
+// src/app/(membership)/layout.tsx
 import type { Metadata } from "next";
 import { Barlow, Bebas_Neue } from "next/font/google";
 import "../globals.css";
@@ -39,13 +39,10 @@ export default function MembershipLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${barlow.variable} ${bebasNeue.variable} overflow-x-hidden`}
+    <div
+      className={`${barlow.variable} ${bebasNeue.variable} font-primary bg-clean-white text-body-text min-h-screen`}
     >
-      <body className="font-primary bg-clean-white text-body-text">
-        {children}
-      </body>
-    </html>
+      {children}
+    </div>
   );
 }

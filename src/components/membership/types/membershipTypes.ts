@@ -1,4 +1,4 @@
-export type FormStep = 1 | 2 | 3 | 4 | 5 | 6;
+export type FormStep = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
 export interface FormData {
   // Personal Information
@@ -63,6 +63,8 @@ export interface FormData {
   agreeToPhotoRelease: boolean;
   agreeToCancellationPolicy: boolean;
   agreeToPaymentTerms: boolean;
+  agreeToClaimsProcedures: boolean;
+  agreeToIndemnification: boolean;
 
   // Payment
   paymentMethod: string;

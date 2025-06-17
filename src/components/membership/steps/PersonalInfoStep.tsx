@@ -24,7 +24,7 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
           Personal Information
         </h2>
         <p className="text-gray-600">
-          Please provide your personal details for membership registration.
+          Please provide personal details for membership registration.
         </p>
       </div>
 
@@ -84,7 +84,8 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
           />
           {formData.isMinor && (
             <p className="mt-1 text-sm text-amber-600">
-              Under 18 - Guardian information will be required
+              Under 18 - Guardian information will be required. Email and phone
+              are optional for minors.
             </p>
           )}
         </div>
@@ -94,7 +95,11 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
             htmlFor="email"
             className="block text-sm font-medium text-gray-700 mb-2"
           >
-            Email Address <span className="text-red-500">*</span>
+            Email Address{" "}
+            {!formData.isMinor && <span className="text-red-500">*</span>}
+            {formData.isMinor && (
+              <span className="text-gray-500">(Optional for minors)</span>
+            )}
           </label>
           <input
             type="email"
@@ -103,7 +108,12 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
             value={formData.email}
             onChange={handleChange}
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
-            required
+            required={!formData.isMinor}
+            placeholder={
+              formData.isMinor
+                ? "Optional - Guardian email will be collected separately"
+                : ""
+            }
           />
         </div>
 
@@ -112,7 +122,11 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
             htmlFor="phone"
             className="block text-sm font-medium text-gray-700 mb-2"
           >
-            Phone Number <span className="text-red-500">*</span>
+            Phone Number{" "}
+            {!formData.isMinor && <span className="text-red-500">*</span>}
+            {formData.isMinor && (
+              <span className="text-gray-500">(Optional for minors)</span>
+            )}
           </label>
           <input
             type="tel"
@@ -120,9 +134,13 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            placeholder="(555) 123-4567"
+            placeholder={
+              formData.isMinor
+                ? "Optional - Guardian phone will be collected separately"
+                : "(555) 123-4567"
+            }
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
-            required
+            required={!formData.isMinor}
           />
         </div>
       </div>
@@ -219,6 +237,15 @@ const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({
         <h3 className="text-lg font-semibold text-gray-900 mb-4">
           Emergency Contact Information
         </h3>
+        {formData.isMinor && (
+          <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+            <p className="text-sm text-blue-800">
+              <strong>Note:</strong> For minors, the emergency contact is
+              typically a parent or guardian. Additional guardian information
+              will be collected in the next step.
+            </p>
+          </div>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label
