@@ -54,10 +54,10 @@ const ContactInfo = () => {
             <h3 className="font-semibold text-lg mb-1">Email</h3>
             <p className="text-caption-text">
               <a
-                href="mailto:info@boxfitutah.com"
+                href="mailto:Boxfitutah@gmail.com"
                 className="hover:text-boxing-red transition-colors"
               >
-                info@boxfitutah.com
+                Boxfitutah@gmail.com
               </a>
             </p>
           </div>

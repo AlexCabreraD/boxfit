@@ -34,10 +34,10 @@ const Footer = () => {
               <li className="flex items-center">
                 <FiMail className="mr-2 text-boxing-red flex-shrink-0" />
                 <a
-                  href="mailto:info@boxfitutah.com"
+                  href="mailto:Boxfitutah@gmail.com"
                   className="hover:text-accent-gold transition-colors"
                 >
-                  info@boxfitutah.com
+                  Boxfitutah@gmail.com
                 </a>
               </li>
             </ul>

@@ -19,10 +19,10 @@ const ContactHero = () => {
               (385) 626-3514
             </a>
             <a
-              href="mailto:info@boxfitutah.com"
+              href="mailto:Boxfitutah@gmail.com"
               className="border-2 border-white hover:border-accent-gold text-white hover:text-accent-gold px-6 py-3 rounded-button font-bold transition-colors inline-flex items-center"
             >
-              info@boxfitutah.com
+              Boxfitutah@gmail.com
             </a>
           </div>
         </div>

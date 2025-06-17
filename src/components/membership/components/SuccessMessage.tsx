@@ -80,10 +80,10 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({ formData }) => {
           </p>
           <p className="text-gray-600">
             <a
-              href="mailto:info@boxfitutah.com"
+              href="mailto:Boxfitutah@gmail.com"
               className="text-red-600 hover:text-red-700"
             >
-              info@boxfitutah.com
+              Boxfitutah@gmail.com
             </a>
           </p>
         </div>
