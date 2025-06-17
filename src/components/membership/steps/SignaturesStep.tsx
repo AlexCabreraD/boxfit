@@ -213,7 +213,8 @@ const SignaturesStep: React.FC<PersonalInfoStepProps> = ({
           <div className="p-4 bg-amber-50 border border-amber-200 rounded-md mb-4">
             <p className="text-sm text-amber-800">
               <strong>Required:</strong> Please upload a photo of your valid
-              government-issued ID (driver's license, passport, or state ID).
+              government-issued ID (driver&#39;s license, passport, or state
+              ID).
             </p>
           </div>
           <div>

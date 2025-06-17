@@ -1,7 +1,6 @@
 import { FormData } from "@/components/membership/types/membershipTypes";
 
 export const submitToAirtable = async (formData: FormData): Promise<void> => {
-  // Prepare the data for Airtable
   const airtableData = {
     // Personal Information
     "First Name": formData.firstName,
@@ -107,6 +106,7 @@ export const submitToAirtable = async (formData: FormData): Promise<void> => {
     setTimeout(() => {
       // Simulate success
       console.log("Submitting to Airtable:", airtableData);
+      console.log(reject);
       resolve();
 
       // In production, you would make the actual API call here:
