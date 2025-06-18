@@ -19,6 +19,23 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
   onSubmit,
   isSubmitting,
 }) => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const handleNext = () => {
+    onNext();
+    setTimeout(scrollToTop, 100);
+  };
+
+  const handlePrevious = () => {
+    onPrevious();
+    setTimeout(scrollToTop, 100);
+  };
+
   const getNextButtonText = () => {
     if (currentStep === 0) return "Continue with Selected Plan";
     if (currentStep < totalSteps - 1) return "Next Step";
@@ -35,7 +52,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
       {currentStep > 0 && (
         <button
           type="button"
-          onClick={onPrevious}
+          onClick={handlePrevious}
           className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors"
         >
           Previous
@@ -46,7 +63,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
         {currentStep < totalSteps - 1 ? (
           <button
             type="button"
-            onClick={onNext}
+            onClick={handleNext}
             disabled={!canProceed}
             className={`px-6 py-2 rounded-md font-medium transition-colors ${
               canProceed

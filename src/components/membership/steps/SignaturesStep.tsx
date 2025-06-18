@@ -14,13 +14,18 @@ const SignaturesStep: React.FC<PersonalInfoStepProps> = ({
     const initCanvas = (canvas: HTMLCanvasElement | null) => {
       if (!canvas) return;
       const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width;
-      canvas.height = rect.height;
+      canvas.width = rect.width * 2; // Higher resolution for better quality
+      canvas.height = rect.height * 2;
+      canvas.style.width = rect.width + "px";
+      canvas.style.height = rect.height + "px";
+
       const ctx = canvas.getContext("2d");
       if (ctx) {
+        ctx.scale(2, 2); // Scale for high DPI
         ctx.strokeStyle = "#000";
         ctx.lineWidth = 2;
         ctx.lineCap = "round";
+        ctx.lineJoin = "round";
       }
     };
 
@@ -28,21 +33,55 @@ const SignaturesStep: React.FC<PersonalInfoStepProps> = ({
     initCanvas(guardianCanvasRef.current);
   }, []);
 
+  const getMousePos = (
+    canvas: HTMLCanvasElement,
+    e: React.MouseEvent | React.TouchEvent,
+  ) => {
+    const rect = canvas.getBoundingClientRect();
+    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
+
+    return {
+      x: clientX - rect.left,
+      y: clientY - rect.top,
+    };
+  };
+
   const startDrawing = (
-    e: React.MouseEvent<HTMLCanvasElement>,
+    e:
+      | React.MouseEvent<HTMLCanvasElement>
+      | React.TouchEvent<HTMLCanvasElement>,
     isGuardian: boolean,
   ) => {
+    e.preventDefault();
+    const canvas = isGuardian
+      ? guardianCanvasRef.current
+      : boxerCanvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const pos = getMousePos(canvas, e);
+
     if (isGuardian) {
       setIsDrawingGuardian(true);
     } else {
       setIsDrawingBoxer(true);
     }
+
+    // Start a new path - this prevents connecting to previous strokes
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
   };
 
   const draw = (
-    e: React.MouseEvent<HTMLCanvasElement>,
+    e:
+      | React.MouseEvent<HTMLCanvasElement>
+      | React.TouchEvent<HTMLCanvasElement>,
     isGuardian: boolean,
   ) => {
+    e.preventDefault();
     const canvas = isGuardian
       ? guardianCanvasRef.current
       : boxerCanvasRef.current;
@@ -53,14 +92,11 @@ const SignaturesStep: React.FC<PersonalInfoStepProps> = ({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const pos = getMousePos(canvas, e);
 
-    ctx.lineTo(x, y);
+    // Draw line to current position
+    ctx.lineTo(pos.x, pos.y);
     ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(x, y);
   };
 
   const stopDrawing = (isGuardian: boolean) => {
@@ -70,14 +106,22 @@ const SignaturesStep: React.FC<PersonalInfoStepProps> = ({
 
     if (isGuardian) {
       setIsDrawingGuardian(false);
-      if (canvas) {
-        updateFormData({ guardianSignature: canvas.toDataURL() });
-      }
     } else {
       setIsDrawingBoxer(false);
-      if (canvas) {
-        updateFormData({ boxerSignature: canvas.toDataURL() });
+    }
+
+    if (canvas) {
+      const ctx = canvas.getContext("2d");
+      if (ctx) {
+        // End the current path
+        ctx.beginPath();
       }
+
+      // Update form data with signature
+      updateFormData({
+        [isGuardian ? "guardianSignature" : "boxerSignature"]:
+          canvas.toDataURL(),
+      });
     }
   };
 
@@ -125,14 +169,18 @@ const SignaturesStep: React.FC<PersonalInfoStepProps> = ({
               Electronic Signature - {formData.firstName} {formData.lastName}{" "}
               <span className="text-red-500">*</span>
             </label>
-            <div className="border-2 border-gray-300 rounded-md p-2 bg-white">
+            <div className="border-2 border-gray-300 rounded-md p-2 bg-white touch-none">
               <canvas
                 ref={boxerCanvasRef}
-                className="w-full h-32 cursor-crosshair"
+                className="w-full h-32 cursor-crosshair touch-none"
                 onMouseDown={(e) => startDrawing(e, false)}
                 onMouseMove={(e) => draw(e, false)}
                 onMouseUp={() => stopDrawing(false)}
                 onMouseLeave={() => stopDrawing(false)}
+                onTouchStart={(e) => startDrawing(e, false)}
+                onTouchMove={(e) => draw(e, false)}
+                onTouchEnd={() => stopDrawing(false)}
+                onTouchCancel={() => stopDrawing(false)}
               />
             </div>
             <div className="mt-2 flex justify-between">
@@ -149,6 +197,10 @@ const SignaturesStep: React.FC<PersonalInfoStepProps> = ({
                 </span>
               )}
             </div>
+            <p className="text-xs text-gray-500 mt-1">
+              Sign above using your mouse or finger. You can lift and start
+              again anywhere.
+            </p>
           </div>
         </div>
       </div>
@@ -166,14 +218,18 @@ const SignaturesStep: React.FC<PersonalInfoStepProps> = ({
                 {formData.guardianLastName}{" "}
                 <span className="text-red-500">*</span>
               </label>
-              <div className="border-2 border-gray-300 rounded-md p-2 bg-white">
+              <div className="border-2 border-gray-300 rounded-md p-2 bg-white touch-none">
                 <canvas
                   ref={guardianCanvasRef}
-                  className="w-full h-32 cursor-crosshair"
+                  className="w-full h-32 cursor-crosshair touch-none"
                   onMouseDown={(e) => startDrawing(e, true)}
                   onMouseMove={(e) => draw(e, true)}
                   onMouseUp={() => stopDrawing(true)}
                   onMouseLeave={() => stopDrawing(true)}
+                  onTouchStart={(e) => startDrawing(e, true)}
+                  onTouchMove={(e) => draw(e, true)}
+                  onTouchEnd={() => stopDrawing(true)}
+                  onTouchCancel={() => stopDrawing(true)}
                 />
               </div>
               <div className="mt-2 flex justify-between">
@@ -190,6 +246,10 @@ const SignaturesStep: React.FC<PersonalInfoStepProps> = ({
                   </span>
                 )}
               </div>
+              <p className="text-xs text-gray-500 mt-1">
+                Sign above using your mouse or finger. You can lift and start
+                again anywhere.
+              </p>
             </div>
           </div>
         </div>

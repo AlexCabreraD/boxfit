@@ -27,6 +27,10 @@ const fileToBase64 = (file: File): Promise<string> => {
   });
 };
 
+const dataURLToBase64 = (dataURL: string): string => {
+  return dataURL.split(",")[1];
+};
+
 export const submitMembershipApplication = async (
   formData: FormData,
 ): Promise<void> => {
@@ -59,6 +63,28 @@ export const submitMembershipApplication = async (
         filename: `${formData.firstName}_${formData.lastName}_Physician_Clearance.${formData.physicianClearanceFile.name.split(".").pop()}`,
         content: base64Content,
         type: formData.physicianClearanceFile.type,
+        disposition: "attachment",
+      });
+    }
+
+    if (formData.boxerSignature) {
+      const signatureBase64 = dataURLToBase64(formData.boxerSignature);
+      attachments.push({
+        filename: `${formData.firstName}_${formData.lastName}_Signature.png`,
+        content: signatureBase64,
+        type: "image/png",
+        disposition: "attachment",
+      });
+    }
+
+    if (formData.guardianSignature && formData.isMinor) {
+      const guardianSignatureBase64 = dataURLToBase64(
+        formData.guardianSignature,
+      );
+      attachments.push({
+        filename: `${formData.guardianFirstName}_${formData.guardianLastName}_Guardian_Signature.png`,
+        content: guardianSignatureBase64,
+        type: "image/png",
         disposition: "attachment",
       });
     }
@@ -127,19 +153,21 @@ export const submitMembershipApplication = async (
         address: `${formData.billingAddress}, ${formData.billingCity}, ${formData.billingState} ${formData.billingZipCode}`,
       },
       documents: {
-        boxerSignature: formData.boxerSignature ? "✅ Completed" : "❌ Missing",
+        boxerSignature: formData.boxerSignature
+          ? "✅ Completed (attached)"
+          : "❌ Missing",
         guardianSignature: formData.isMinor
           ? formData.guardianSignature
-            ? "✅ Completed"
+            ? "✅ Completed (attached)"
             : "❌ Missing"
           : "N/A",
         boxerIdProvided: formData.boxerIdFile
-          ? "✅ Uploaded"
+          ? "✅ Uploaded (attached)"
           : formData.isMinor
             ? "N/A"
             : "❌ Missing",
         guardianIdProvided: formData.guardianIdFile
-          ? "✅ Uploaded"
+          ? "✅ Uploaded (attached)"
           : formData.isMinor
             ? "❌ Missing"
             : "N/A",

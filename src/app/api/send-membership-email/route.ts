@@ -144,6 +144,12 @@ function generateEmailHTML(emailData: EmailData): string {
     applicationDate,
   } = emailData;
 
+  const attachmentCount = emailData.attachments?.length || 0;
+  const hasSignatureAttachments =
+    emailData.attachments?.some((att) =>
+      att.filename.includes("_Signature.png"),
+    ) || false;
+
   return `
 <!DOCTYPE html>
 <html>
@@ -168,6 +174,7 @@ function generateEmailHTML(emailData: EmailData): string {
     .legal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .status-complete { color: #28a745; font-weight: bold; }
     .status-missing { color: #dc3545; font-weight: bold; }
+    .attachment-info { background-color: #e3f2fd; border: 1px solid #2196f3; color: #1565c0; padding: 15px; border-radius: 5px; margin: 15px 0; }
   </style>
 </head>
 <body>
@@ -180,6 +187,20 @@ function generateEmailHTML(emailData: EmailData): string {
     ${memberInfo.isMinor ? '<div class="alert"><strong>⚠️ MINOR APPLICATION:</strong> This application is for a minor and requires guardian approval and supervision.</div>' : ""}
     
     <div class="alert"><strong>🏥 MEDICAL REVIEW:</strong> Coach Pablo will review medical history and determine if any physician clearance is needed before training begins.</div>
+
+    ${
+      attachmentCount > 0
+        ? `
+    <div class="attachment-info">
+      <strong>📎 ATTACHMENTS INCLUDED:</strong> This email contains ${attachmentCount} attachment(s):
+      <ul style="margin: 10px 0; padding-left: 20px;">
+        ${emailData.attachments?.map((att) => `<li>${att.filename}</li>`).join("") || ""}
+      </ul>
+      ${hasSignatureAttachments ? "<p><strong>Note:</strong> Electronic signatures are attached as PNG image files.</p>" : ""}
+    </div>
+    `
+        : ""
+    }
 
     <div class="section">
       <h2>👤 Member Information</h2>
@@ -271,6 +292,15 @@ function generateEmailHTML(emailData: EmailData): string {
         <div class="info-item">Guardian ID: <span class="${documents.guardianIdProvided.includes("✅") ? "status-complete" : "status-missing"}">${documents.guardianIdProvided}</span></div>
         <div class="info-item">Physician Clearance: <span class="status-complete">${documents.physicianClearance}</span></div>
       </div>
+      ${
+        hasSignatureAttachments
+          ? `
+      <div style="margin-top: 15px; padding: 10px; background-color: #f0f8ff; border-radius: 5px;">
+        <p style="margin: 0; color: #1565c0;"><strong>📝 Signature Files:</strong> Electronic signatures are attached as high-resolution PNG image files for your records.</p>
+      </div>
+      `
+          : ""
+      }
     </div>
     
     <div class="action-box">
@@ -282,7 +312,7 @@ function generateEmailHTML(emailData: EmailData): string {
     <div class="alert success">
       <h3 style="margin-top: 0;">📋 Next Steps for Coach Pablo:</h3>
       <ol style="margin-bottom: 0;">
-        <li><strong>Review Application:</strong> Check all information and attachments</li>
+        <li><strong>Review Application:</strong> Check all information and attachments (including signature files)</li>
         <li><strong>Medical Review:</strong> Determine if physician clearance is needed for any conditions</li>
         <li><strong>Schedule Free Trial:</strong> Contact member to arrange their first class</li>
         <li><strong>Verify Payment Setup:</strong> Ensure member completes payment setup by their second class</li>
@@ -294,6 +324,7 @@ function generateEmailHTML(emailData: EmailData): string {
     <hr style="margin: 30px 0; border: none; border-top: 1px solid #eee;">
     <p style="text-align: center; color: #888; font-size: 14px;">
       BoxFit Utah Membership System • Application received on ${applicationDate}
+      ${attachmentCount > 0 ? ` • ${attachmentCount} attachment(s) included` : ""}
     </p>
   </div>
 </body>

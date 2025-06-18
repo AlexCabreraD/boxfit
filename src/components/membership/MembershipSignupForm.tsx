@@ -16,7 +16,7 @@ import FormNavigation from "./components/FormNavigation";
 import SuccessMessage from "./components/SuccessMessage";
 
 const MembershipSignupForm = () => {
-  const [currentStep, setCurrentStep] = useState<FormStep>(0); // Start at 0 for membership selection
+  const [currentStep, setCurrentStep] = useState<FormStep>(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -71,7 +71,7 @@ const MembershipSignupForm = () => {
     guardianZipCode: "",
 
     // Membership Selection
-    membershipPlan: "", // Start empty, user will select
+    membershipPlan: "",
     startDate: "",
 
     // Legal Agreements
