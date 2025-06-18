@@ -36,6 +36,7 @@ interface SimplifiedFormData {
   // Membership Type
   membershipType: string;
   membershipLevel: string; // Monthly, Semi-Annual, Annual
+  totalDue: string;
 
   // Payment Information
   startDate: string;
@@ -83,12 +84,7 @@ const SimplifiedMembershipForm = () => {
     membershipLevel: "Monthly",
     startDate: "",
     initiationFee: "0",
-    monthlyDues: "",
-    totalDue: "",
-    paymentMethod: "",
-    creditCardType: "",
-    paymentType: "In full",
-    paymentBeginning: "",
+    totalDue: "- -",
     isMinor: false,
     participantAge: "",
     guardianName: "",
@@ -331,8 +327,6 @@ const SimplifiedMembershipForm = () => {
     setFormData((prev) => ({
       ...prev,
       startDate: prev.startDate || nextWeek.toISOString().split("T")[0],
-      paymentBeginning:
-        prev.paymentBeginning || nextWeek.toISOString().split("T")[0],
     }));
   }, []);
 
@@ -421,8 +415,8 @@ const SimplifiedMembershipForm = () => {
           </h2>
 
           <p className="text-lg text-gray-600 mb-6">
-            Thank you for joining BoxFit Utah! We've received your membership
-            application.
+            Thank you for joining BoxFit Utah! We&#39;ve received your
+            membership application.
           </p>
 
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
@@ -778,7 +772,7 @@ const SimplifiedMembershipForm = () => {
                 <p className="text-amber-800 text-sm">
                   <strong>Legal Requirement:</strong> We are required by law to
                   have a valid government-issued photo ID on file for all
-                  members. For minors under 18, we need the guardian's ID
+                  members. For minors under 18, we need the guardian&#39;s ID
                   instead.
                 </p>
               </div>
@@ -798,7 +792,8 @@ const SimplifiedMembershipForm = () => {
                   />
                   <p className="mt-1 text-sm text-gray-500">
                     Accepted formats: JPG, PNG, PDF (max 10MB). Please upload a
-                    clear photo of your driver's license, state ID, or passport.
+                    clear photo of your driver&#39;s license, state ID, or
+                    passport.
                   </p>
                   {formData.memberIdFile && (
                     <p className="mt-2 text-sm text-green-600">
@@ -822,8 +817,8 @@ const SimplifiedMembershipForm = () => {
                   />
                   <p className="mt-1 text-sm text-gray-500">
                     Accepted formats: JPG, PNG, PDF (max 10MB). Please upload a
-                    clear photo of the parent/guardian's driver's license, state
-                    ID, or passport.
+                    clear photo of the parent/guardian&#39;s driver&#39;s
+                    license, state ID, or passport.
                   </p>
                   {formData.guardianIdFile && (
                     <p className="mt-2 text-sm text-green-600">
@@ -990,9 +985,9 @@ const SimplifiedMembershipForm = () => {
                     <strong>
                       PURSUANT TO THE TERMS OF THIS MEMBERSHIP CONTRACT AND IN
                       ACCORDANCE WITH THE STATED TERMS AND CONDITIONS HEREIN, I
-                      HEREBY AUTHORIZE BOXFITUTAH, LLC ("Boxfit") OR ITS ASSIGNS
-                      TO INITIATE DEBIT PAYMENTS TO THE BANK AND MY ACCOUNT
-                      INDICATED BELOW.
+                      HEREBY AUTHORIZE BOXFITUTAH, LLC (&#34;Boxfit&#34;) OR ITS
+                      ASSIGNS TO INITIATE DEBIT PAYMENTS TO THE BANK AND MY
+                      ACCOUNT INDICATED BELOW.
                     </strong>
                   </p>
 
@@ -1029,9 +1024,9 @@ const SimplifiedMembershipForm = () => {
                   <p>
                     In consideration of my participating in activities and my
                     use of the facilities and equipment, owned, rented and/or
-                    operated by Boxfit Utah, LLC ("Boxfit"), I, the undersigned,
-                    hereby enter into this injury waiver and release of
-                    liability agreement.
+                    operated by Boxfit Utah, LLC (&#34;Boxfit&#34;), I, the
+                    undersigned, hereby enter into this injury waiver and
+                    release of liability agreement.
                   </p>
 
                   <p>
@@ -1046,9 +1041,9 @@ const SimplifiedMembershipForm = () => {
                     <strong>SPECIFICALLY ASSUME ALL SUCH RISKS</strong>. I
                     specifically agree that Boxfit is not responsible for any
                     injury, however minor, major, or catastrophic, including
-                    death, loss, or property damages suffered while on Boxfit's
-                    premises or while participating in any Boxfit related
-                    activities. This includes specifically, but without
+                    death, loss, or property damages suffered while on
+                    Boxfit&#39;s premises or while participating in any Boxfit
+                    related activities. This includes specifically, but without
                     limitation, all gym activities, use of the lockers, parking
                     area, sidewalk, group or other exercise areas, or any
                     equipment in the facilities, and my participating in any
@@ -1109,8 +1104,8 @@ const SimplifiedMembershipForm = () => {
                     action, the parties must mediate within 60 days of notice of
                     claim provided to Boxfit. If the dispute is not resolved at
                     mediation, the claim will be subject to litigation or
-                    arbitration at Boxfit's sole discretion, with any arbitrator
-                    chosen solely by Boxfit.
+                    arbitration at Boxfit&#39;s sole discretion, with any
+                    arbitrator chosen solely by Boxfit.
                   </p>
 
                   <p>
@@ -1155,11 +1150,11 @@ const SimplifiedMembershipForm = () => {
                     <p>
                       The undersigned parent and/or natural guardian does hereby
                       represent that he/she/they are in fact, acting in such
-                      capacity, has consented to his/her/their child's or ward's
-                      participation in Boxfit activities and has agreed
-                      individually and on behalf of the child or ward, to the
-                      terms of the injury waiver and release of liability set
-                      forth above. The undersigned parent and/or guardian
+                      capacity, has consented to his/her/their child&#39;s or
+                      ward&#39;s participation in Boxfit activities and has
+                      agreed individually and on behalf of the child or ward, to
+                      the terms of the injury waiver and release of liability
+                      set forth above. The undersigned parent and/or guardian
                       further agrees to save, hold harmless, and indemnify each
                       and all the parties referred to above from all liability,
                       loss, cost, attorney fees, claim, or damage whatsoever
@@ -1362,8 +1357,8 @@ const SimplifiedMembershipForm = () => {
                   </li>
                   {formData.isMinor && (
                     <li>
-                      As parent/guardian, I consent to my child's participation
-                      and agree to all terms on their behalf
+                      As parent/guardian, I consent to my child&#39;s
+                      participation and agree to all terms on their behalf
                     </li>
                   )}
                 </ul>
