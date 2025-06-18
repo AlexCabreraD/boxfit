@@ -13,12 +13,10 @@ const ScheduleCalendarClient = ({
   timeSlots,
   days,
 }: ScheduleCalendarClientProps) => {
-  // Function to check if a class exists at a given time slot and day
   const getClassAtTimeSlot = (timeSlot: string, day: string) => {
     return classSchedule[day].find((item) => item.time === timeSlot);
   };
 
-  // Function to determine the color based on class level
   const getLevelColor = (level: string): string => {
     switch (level) {
       case "Beginner":

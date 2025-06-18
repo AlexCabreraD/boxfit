@@ -57,7 +57,6 @@ const ContactFormClient = () => {
             "Thank you for your message! We'll get back to you within 24 hours.",
         });
 
-        // Reset form after successful submission
         setFormState({
           name: "",
           email: "",
@@ -66,7 +65,6 @@ const ContactFormClient = () => {
           message: "",
         });
 
-        // Clear success message after 7 seconds
         setTimeout(() => {
           setSubmitStatus({});
         }, 7000);
@@ -81,7 +79,6 @@ const ContactFormClient = () => {
           "There was an error sending your message. Please try again or call us at (385) 626-3514.",
       });
 
-      // Clear error message after 7 seconds
       setTimeout(() => {
         setSubmitStatus({});
       }, 7000);

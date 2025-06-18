@@ -6,7 +6,6 @@ interface ScheduleCalendarProps {
 }
 
 const ScheduleCalendar = ({ classSchedule }: ScheduleCalendarProps) => {
-  // Get all unique time slots from the schedule
   const getAllTimeSlots = () => {
     const allTimeSlots = new Set<string>();
 
@@ -17,15 +16,12 @@ const ScheduleCalendar = ({ classSchedule }: ScheduleCalendarProps) => {
     });
 
     return Array.from(allTimeSlots).sort((a, b) => {
-      // Extract the start time for sorting
       const aStart = a.split(" - ")[0];
       const bStart = b.split(" - ")[0];
 
-      // Convert to 24-hour format for comparison
       const aHour = parseInt(aStart.split(":")[0]);
       const bHour = parseInt(bStart.split(":")[0]);
 
-      // Handle AM/PM
       const aIsPM = aStart.includes("PM") && aHour !== 12;
       const bIsPM = bStart.includes("PM") && bHour !== 12;
 

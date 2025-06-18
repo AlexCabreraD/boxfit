@@ -69,7 +69,6 @@ const Testimonials = () => {
     }
   };
 
-  // Auto-rotate testimonials
   useEffect(() => {
     intervalRef.current = setInterval(() => {
       nextTestimonial();
@@ -82,7 +81,6 @@ const Testimonials = () => {
     };
   }, []);
 
-  // Reset interval when manually navigating
   const handleManualNav = (direction: "next" | "prev") => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -99,14 +97,12 @@ const Testimonials = () => {
     }, 6000);
   };
 
-  // Render star ratings
   const renderStars = (count: number) => {
     return Array(count)
       .fill(0)
       .map((_, index) => <IoStar key={index} className="text-accent-gold" />);
   };
 
-  // Get the first letter of the name for avatar fallback
   const getInitial = (name: string) => {
     return name.charAt(0).toUpperCase();
   };

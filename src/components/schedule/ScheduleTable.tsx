@@ -2,7 +2,6 @@ import ScheduleTableClient from "./ScheduleTableClient";
 import ScheduleCalendar from "./ScheduleCalendar";
 import { ClassSchedule } from "./types";
 
-// Define the class schedule data
 const classSchedule: ClassSchedule = {
   Monday: [
     {
