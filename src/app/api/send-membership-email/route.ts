@@ -44,7 +44,6 @@ interface EmailData {
     allergies: string;
     previousInjuries: string;
     physicalLimitations: string;
-    requiresPhysicianClearance: boolean;
   };
   experience: {
     boxingExperience: string;
@@ -180,7 +179,7 @@ function generateEmailHTML(emailData: EmailData): string {
 
     ${memberInfo.isMinor ? '<div class="alert"><strong>⚠️ MINOR APPLICATION:</strong> This application is for a minor and requires guardian approval and supervision.</div>' : ""}
     
-    ${medicalInfo.requiresPhysicianClearance ? '<div class="alert"><strong>🏥 MEDICAL CLEARANCE REQUIRED:</strong> This member requires physician clearance before participation.</div>' : ""}
+    <div class="alert"><strong>🏥 MEDICAL REVIEW:</strong> Coach Pablo will review medical history and determine if any physician clearance is needed before training begins.</div>
 
     <div class="section">
       <h2>👤 Member Information</h2>
@@ -270,6 +269,7 @@ function generateEmailHTML(emailData: EmailData): string {
         <div class="info-item">Guardian Signature: <span class="${documents.guardianSignature.includes("✅") ? "status-complete" : "status-missing"}">${documents.guardianSignature}</span></div>
         <div class="info-item">Boxer ID: <span class="${documents.boxerIdProvided.includes("✅") ? "status-complete" : "status-missing"}">${documents.boxerIdProvided}</span></div>
         <div class="info-item">Guardian ID: <span class="${documents.guardianIdProvided.includes("✅") ? "status-complete" : "status-missing"}">${documents.guardianIdProvided}</span></div>
+        <div class="info-item">Physician Clearance: <span class="status-complete">${documents.physicianClearance}</span></div>
       </div>
     </div>
     
@@ -283,6 +283,7 @@ function generateEmailHTML(emailData: EmailData): string {
       <h3 style="margin-top: 0;">📋 Next Steps for Coach Pablo:</h3>
       <ol style="margin-bottom: 0;">
         <li><strong>Review Application:</strong> Check all information and attachments</li>
+        <li><strong>Medical Review:</strong> Determine if physician clearance is needed for any conditions</li>
         <li><strong>Schedule Free Trial:</strong> Contact member to arrange their first class</li>
         <li><strong>Verify Payment Setup:</strong> Ensure member completes payment setup by their second class</li>
         <li><strong>Prepare for Trial:</strong> Note any medical considerations or special needs</li>

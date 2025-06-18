@@ -4,6 +4,7 @@ import { FormData } from "@/components/membership/types/membershipTypes";
 const MedicalInfoStep: React.FC<PersonalInfoStepProps> = ({
   formData,
   updateFormData,
+  onSkip,
 }) => {
   const handleChange = (
     e: React.ChangeEvent<
@@ -13,6 +14,25 @@ const MedicalInfoStep: React.FC<PersonalInfoStepProps> = ({
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
     updateFormData({ [name]: type === "checkbox" ? checked : value });
+  };
+
+  const handleNoMedicalHistory = () => {
+    updateFormData({
+      hasHeartCondition: false,
+      hasSeizureDisorder: false,
+      hasHeadInjuries: false,
+      hasBreathingProblems: false,
+      hasDiabetes: false,
+      hasHighBloodPressure: false,
+      otherMedicalConditions: "",
+      currentMedications: "",
+      allergies: "",
+      previousInjuries: "",
+      physicalLimitations: "",
+    });
+    if (onSkip) {
+      onSkip();
+    }
   };
 
   const medicalConditions = [
@@ -31,19 +51,30 @@ const MedicalInfoStep: React.FC<PersonalInfoStepProps> = ({
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          Medical Information & Health History
+          Medical Information & Health History Medical Information & Health
+          History
         </h2>
         <p className="text-gray-600">
           This information helps us ensure your safety during training. All
           information is kept confidential.
         </p>
-        <div className="mt-2 p-3 bg-amber-50 border border-amber-200 rounded-md">
-          <p className="text-sm text-amber-800">
-            <strong>Important:</strong> If you have any serious medical
-            conditions, you may be required to provide physician clearance
-            before participating.
+        <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-md">
+          <p className="text-sm text-blue-800">
+            <strong>Note:</strong> Coach Pablo will review your medical history
+            and contact you if any physician clearance is needed before starting
+            training.
           </p>
         </div>
+      </div>
+
+      <div className="flex justify-center">
+        <button
+          type="button"
+          onClick={handleNoMedicalHistory}
+          className="bg-green-600 text-white px-6 py-3 rounded-md font-medium hover:bg-green-700 transition-colors"
+        >
+          ✅ No Relevant Medical History - Skip Section
+        </button>
       </div>
 
       <div>
@@ -125,7 +156,7 @@ const MedicalInfoStep: React.FC<PersonalInfoStepProps> = ({
 
       <div className="border-t pt-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">
-          Physical History & Experience
+          Physical History
         </h3>
 
         <div className="space-y-4">
@@ -164,116 +195,16 @@ const MedicalInfoStep: React.FC<PersonalInfoStepProps> = ({
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
             />
           </div>
-
-          <div>
-            <label
-              htmlFor="boxingExperience"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Boxing Experience
-            </label>
-            <select
-              id="boxingExperience"
-              name="boxingExperience"
-              value={formData.boxingExperience}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
-            >
-              <option value="none">No experience</option>
-              <option value="beginner">Beginner (less than 6 months)</option>
-              <option value="intermediate">
-                Intermediate (6 months - 2 years)
-              </option>
-              <option value="advanced">Advanced (2+ years)</option>
-              <option value="competitive">Competitive boxer</option>
-            </select>
-          </div>
-
-          <div>
-            <label
-              htmlFor="otherCombatSportsExperience"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Other Combat Sports Experience
-            </label>
-            <textarea
-              id="otherCombatSportsExperience"
-              name="otherCombatSportsExperience"
-              value={formData.otherCombatSportsExperience}
-              onChange={handleChange}
-              rows={2}
-              placeholder="List any experience in MMA, wrestling, martial arts, etc..."
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="fitnessLevel"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Current Fitness Level
-            </label>
-            <select
-              id="fitnessLevel"
-              name="fitnessLevel"
-              value={formData.fitnessLevel}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
-            >
-              <option value="beginner">
-                Beginner - Little to no regular exercise
-              </option>
-              <option value="moderate">
-                Moderate - Exercise 1-2 times per week
-              </option>
-              <option value="active">
-                Active - Exercise 3-4 times per week
-              </option>
-              <option value="very-active">
-                Very Active - Exercise 5+ times per week
-              </option>
-              <option value="athlete">
-                Athlete - Competitive sports training
-              </option>
-            </select>
-          </div>
-
-          <div>
-            <label
-              htmlFor="goals"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Your Boxing Goals
-            </label>
-            <textarea
-              id="goals"
-              name="goals"
-              value={formData.goals}
-              onChange={handleChange}
-              rows={3}
-              placeholder="What do you hope to achieve through boxing training? (fitness, self-defense, competition, etc.)"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
-            />
-          </div>
         </div>
       </div>
 
       <div className="p-4 bg-gray-50 rounded-md">
-        <label className="flex items-start">
-          <input
-            type="checkbox"
-            name="requiresPhysicianClearance"
-            checked={formData.requiresPhysicianClearance}
-            onChange={handleChange}
-            className="mt-1 mr-3"
-          />
-          <span className="text-gray-700">
-            I understand that I may be required to provide physician clearance
-            before participating if I have indicated any serious medical
-            conditions above.
-          </span>
-        </label>
+        <p className="text-sm text-gray-700">
+          <strong>Important:</strong> This information helps us provide safe and
+          effective training. Coach Pablo will review all medical information
+          and may request physician clearance for certain conditions before
+          training begins.
+        </p>
       </div>
     </div>
   );

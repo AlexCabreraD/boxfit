@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FiArrowLeft, FiAlertTriangle } from "react-icons/fi";
 import PersonalInfoStep from "./steps/PersonalInfoStep";
 import MedicalInfoStep from "./steps/MedicalInfoStep";
+import ExperienceInfoStep from "./steps/ExperienceInfoStep";
 import GuardianInfoStep from "./steps/GuardianInfoStep";
 import LegalWaiversStep from "./steps/LegalWaiversStep";
 import SignaturesStep from "./steps/SignaturesStep";
@@ -50,7 +51,6 @@ const MembershipSignupForm = () => {
     allergies: "",
     previousInjuries: "",
     physicalLimitations: "",
-    requiresPhysicianClearance: false,
 
     // Experience
     boxingExperience: "none",
@@ -179,7 +179,10 @@ const MembershipSignupForm = () => {
       case 3: // Medical Info
         return true; // Medical info is optional but encouraged
 
-      case 4: // Legal Waivers
+      case 4: // Experience Info
+        return true; // Experience info is completely optional
+
+      case 5: // Legal Waivers
         return (
           formData.agreeToLiabilityWaiver &&
           formData.agreeToAssumptionOfRisk &&
@@ -193,14 +196,14 @@ const MembershipSignupForm = () => {
           formData.agreeToIndemnification
         );
 
-      case 5: // Signatures
+      case 6: // Signatures
         return !!(
           formData.boxerSignature &&
           (formData.isMinor ? formData.guardianSignature : true) &&
           (formData.isMinor || formData.boxerIdFile)
         );
 
-      case 6: // Payment Info
+      case 7: // Payment Info
         return !!(
           formData.membershipPlan &&
           formData.cardholderName &&
@@ -262,9 +265,10 @@ const MembershipSignupForm = () => {
     { number: 1, title: "Personal Info" },
     { number: 2, title: "Guardian Info", conditional: formData.isMinor },
     { number: 3, title: "Medical Info" },
-    { number: 4, title: "Legal Waivers" },
-    { number: 5, title: "Signatures" },
-    { number: 6, title: "Payment Setup" },
+    { number: 4, title: "Experience" },
+    { number: 5, title: "Legal Waivers" },
+    { number: 6, title: "Signatures" },
+    { number: 7, title: "Payment Setup" },
   ];
 
   const visibleSteps = steps.filter(
@@ -361,24 +365,33 @@ const MembershipSignupForm = () => {
             <MedicalInfoStep
               formData={formData}
               updateFormData={updateFormData}
+              onSkip={handleNext}
             />
           )}
 
           {currentStep === 4 && (
+            <ExperienceInfoStep
+              formData={formData}
+              updateFormData={updateFormData}
+              onSkip={handleNext}
+            />
+          )}
+
+          {currentStep === 5 && (
             <LegalWaiversStep
               formData={formData}
               updateFormData={updateFormData}
             />
           )}
 
-          {currentStep === 5 && (
+          {currentStep === 6 && (
             <SignaturesStep
               formData={formData}
               updateFormData={updateFormData}
             />
           )}
 
-          {currentStep === 6 && (
+          {currentStep === 7 && (
             <PaymentInfoStep
               formData={formData}
               updateFormData={updateFormData}

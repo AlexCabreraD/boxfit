@@ -4,6 +4,7 @@ import { FormData } from "../types/membershipTypes";
 export interface PersonalInfoStepProps {
   formData: FormData;
   updateFormData: (updates: Partial<FormData>) => void;
+  onSkip?: () => void;
 }
 
 const PersonalInfoStep: React.FC<PersonalInfoStepProps> = ({

@@ -103,15 +103,6 @@ const SignaturesStep: React.FC<PersonalInfoStepProps> = ({
     }
   };
 
-  const handlePhysicianFileChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      updateFormData({ physicianClearanceFile: file });
-    }
-  };
-
   return (
     <div className="space-y-6">
       <div>
@@ -239,46 +230,6 @@ const SignaturesStep: React.FC<PersonalInfoStepProps> = ({
             {formData.boxerIdFile && (
               <p className="mt-2 text-sm text-green-600">
                 ✓ File uploaded: {formData.boxerIdFile.name}
-              </p>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Physician Clearance (if required) */}
-      {formData.requiresPhysicianClearance && (
-        <div className="border-t pt-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            Physician Clearance
-          </h3>
-          <div className="p-4 bg-red-50 border border-red-200 rounded-md mb-4">
-            <p className="text-sm text-red-800">
-              <strong>Required:</strong> Based on your medical history, you must
-              provide physician clearance before participating in boxing
-              activities.
-            </p>
-          </div>
-          <div>
-            <label
-              htmlFor="physicianClearanceFile"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Upload Physician Clearance
-            </label>
-            <input
-              type="file"
-              id="physicianClearanceFile"
-              name="physicianClearanceFile"
-              onChange={handlePhysicianFileChange}
-              accept="image/*,.pdf"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
-            />
-            <p className="mt-1 text-sm text-gray-500">
-              Accepted formats: JPG, PNG, PDF (max 10MB)
-            </p>
-            {formData.physicianClearanceFile && (
-              <p className="mt-2 text-sm text-green-600">
-                ✓ File uploaded: {formData.physicianClearanceFile.name}
               </p>
             )}
           </div>

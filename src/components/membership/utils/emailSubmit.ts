@@ -1,9 +1,7 @@
 import { FormData } from "@/components/membership/types/membershipTypes";
 
-// Helper function to format boolean values
 const formatBoolean = (value: boolean): string => (value ? "✅ Yes" : "❌ No");
 
-// Helper function to format medical conditions
 const formatMedicalConditions = (formData: FormData): string => {
   const conditions = [
     formData.hasHeartCondition && "Heart Condition",
@@ -17,26 +15,22 @@ const formatMedicalConditions = (formData: FormData): string => {
   return conditions.length > 0 ? conditions.join(", ") : "None reported";
 };
 
-// Helper function to convert file to base64 for email attachment
 const fileToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
       const base64 = reader.result as string;
-      // Remove the data:mime;base64, prefix
       resolve(base64.split(",")[1]);
     };
     reader.onerror = (error) => reject(error);
   });
 };
 
-// Main email submission function
 export const submitMembershipApplication = async (
   formData: FormData,
 ): Promise<void> => {
   try {
-    // Prepare attachments if files exist
     const attachments = [];
 
     if (formData.boxerIdFile) {
@@ -69,7 +63,6 @@ export const submitMembershipApplication = async (
       });
     }
 
-    // Prepare email data
     const emailData = {
       memberInfo: {
         firstName: formData.firstName,
@@ -102,7 +95,6 @@ export const submitMembershipApplication = async (
         allergies: formData.allergies || "None",
         previousInjuries: formData.previousInjuries || "None",
         physicalLimitations: formData.physicalLimitations || "None",
-        requiresPhysicianClearance: formData.requiresPhysicianClearance,
       },
       experience: {
         boxingExperience: formData.boxingExperience,
@@ -151,17 +143,12 @@ export const submitMembershipApplication = async (
           : formData.isMinor
             ? "❌ Missing"
             : "N/A",
-        physicianClearance: formData.physicianClearanceFile
-          ? "✅ Uploaded"
-          : "Not required",
+        physicianClearance: "Coach will determine if needed",
       },
       applicationDate: new Date().toLocaleString(),
-      paymentLink:
-        "https://collectcheckout.com/r/f1tii0puusd8nfr5zchzdxpcozhnf2",
       attachments,
     };
 
-    // Send email via API route
     const response = await fetch("/api/send-membership-email", {
       method: "POST",
       headers: {

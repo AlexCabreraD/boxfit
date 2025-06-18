@@ -48,19 +48,26 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({ formData }) => {
             <li className="flex items-start">
               <span className="font-semibold mr-2">2.</span>
               <span>
+                Coach Pablo will review your medical history and contact you if
+                any physician clearance is needed.
+              </span>
+            </li>
+            <li className="flex items-start">
+              <span className="font-semibold mr-2">3.</span>
+              <span>
                 Set up your payment information using the secure link below (no
                 charge until after your trial).
               </span>
             </li>
             <li className="flex items-start">
-              <span className="font-semibold mr-2">3.</span>
+              <span className="font-semibold mr-2">4.</span>
               <span>
                 We&#39;ll schedule your free trial class at a time that works
                 for you.
               </span>
             </li>
             <li className="flex items-start">
-              <span className="font-semibold mr-2">4.</span>
+              <span className="font-semibold mr-2">5.</span>
               <span>
                 After your trial, if you continue, billing begins with your
                 second class for your{" "}
@@ -71,7 +78,7 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({ formData }) => {
               </span>
             </li>
             <li className="flex items-start">
-              <span className="font-semibold mr-2">5.</span>
+              <span className="font-semibold mr-2">6.</span>
               <span>Begin your boxing journey!</span>
             </li>
           </ol>

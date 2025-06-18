@@ -1,4 +1,4 @@
-export type FormStep = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+export type FormStep = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 export interface FormData {
   // Personal Information
@@ -29,7 +29,6 @@ export interface FormData {
   allergies: string;
   previousInjuries: string;
   physicalLimitations: string;
-  requiresPhysicianClearance: boolean;
 
   // Experience
   boxingExperience: string;
