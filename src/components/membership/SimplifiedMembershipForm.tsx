@@ -31,7 +31,6 @@ interface SimplifiedFormData {
   startDate: string;
   initiationFee: string;
   monthlyDues: string;
-  salesTax: string;
   totalDue: string;
   paymentMethod: string; // Cash, Check, ACH
   creditCardType: string; // AMEX, Visa, MC, Discover
@@ -80,7 +79,6 @@ const SimplifiedMembershipForm = () => {
     startDate: "",
     initiationFee: "0",
     monthlyDues: "",
-    salesTax: "0",
     totalDue: "",
     paymentMethod: "",
     creditCardType: "",
@@ -265,12 +263,10 @@ const SimplifiedMembershipForm = () => {
 
       // Calculate pre-tax amount (reverse calculate from total)
       const preTaxAmount = Math.round((totalAmount / 1.0725) * 100) / 100;
-      const salesTax = Math.round((totalAmount - preTaxAmount) * 100) / 100;
 
       setFormData((prev) => ({
         ...prev,
         monthlyDues: preTaxAmount.toString(),
-        salesTax: salesTax.toString(),
         totalDue: totalAmount.toString(),
       }));
     }
@@ -765,18 +761,10 @@ const SimplifiedMembershipForm = () => {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="bg-gray-50 p-4 rounded-lg flex flex-col justify-between">
                   <h3 className="font-semibold mb-3">Membership Summary</h3>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span>Monthly Dues (pre-tax):</span>
-                      <span>${formData.monthlyDues}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Sales Tax:</span>
-                      <span>${formData.salesTax}</span>
-                    </div>
-                    <div className="flex justify-between font-bold">
                       <span>Total Monthly:</span>
                       <span>${formData.totalDue}</span>
                     </div>
@@ -792,7 +780,6 @@ const SimplifiedMembershipForm = () => {
               </div>
             </div>
 
-            {/* Payment Information Section */}
             {/* Payment Information Section */}
             <div className="border-b pb-8">
               <div className="flex items-center mb-6">
@@ -826,145 +813,9 @@ const SimplifiedMembershipForm = () => {
                     name="initiationFee"
                     value={formData.initiationFee}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Payment Made By
-                  </label>
-                  <div className="space-y-2">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        value="Cash"
-                        checked={formData.paymentMethod === "Cash"}
-                        onChange={handleChange}
-                        className="mr-2"
-                      />
-                      <span>Cash</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        value="Check"
-                        checked={formData.paymentMethod === "Check"}
-                        onChange={handleChange}
-                        className="mr-2"
-                      />
-                      <span>Check</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        value="ACH"
-                        checked={formData.paymentMethod === "ACH"}
-                        onChange={handleChange}
-                        className="mr-2"
-                      />
-                      <span>ACH</span>
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Credit Card Type
-                  </label>
-                  <div className="space-y-2">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="creditCardType"
-                        value="AMEX"
-                        checked={formData.creditCardType === "AMEX"}
-                        onChange={handleChange}
-                        className="mr-2"
-                      />
-                      <span>AMEX</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="creditCardType"
-                        value="Visa"
-                        checked={formData.creditCardType === "Visa"}
-                        onChange={handleChange}
-                        className="mr-2"
-                      />
-                      <span>Visa</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="creditCardType"
-                        value="MC"
-                        checked={formData.creditCardType === "MC"}
-                        onChange={handleChange}
-                        className="mr-2"
-                      />
-                      <span>Mastercard</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="creditCardType"
-                        value="Discover"
-                        checked={formData.creditCardType === "Discover"}
-                        onChange={handleChange}
-                        className="mr-2"
-                      />
-                      <span>Discover</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Payment Method
-                  </label>
-                  <div className="space-y-2">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="paymentType"
-                        value="In full"
-                        checked={formData.paymentType === "In full"}
-                        onChange={handleChange}
-                        className="mr-2"
-                      />
-                      <span>In full</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="paymentType"
-                        value="Instalments"
-                        checked={formData.paymentType === "Instalments"}
-                        onChange={handleChange}
-                        className="mr-2"
-                      />
-                      <span>Instalments</span>
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Beginning
-                  </label>
-                  <input
-                    type="date"
-                    name="paymentBeginning"
-                    value={formData.paymentBeginning}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
+                    readOnly
+                    disabled
                   />
                 </div>
               </div>
@@ -1186,6 +1037,7 @@ const SimplifiedMembershipForm = () => {
                       type="text"
                       value={`${formData.firstName} ${formData.lastName}`}
                       readOnly
+                      disabled
                       className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
                     />
                   </div>
@@ -1197,6 +1049,7 @@ const SimplifiedMembershipForm = () => {
                       type="text"
                       value={formData.participantAge}
                       readOnly
+                      disabled
                       className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
                     />
                   </div>
