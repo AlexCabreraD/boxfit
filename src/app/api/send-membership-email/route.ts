@@ -143,7 +143,6 @@ function generateEmailHTML(emailData: EmailData): string {
     billing,
     documents,
     applicationDate,
-    paymentLink,
   } = emailData;
 
   return `
