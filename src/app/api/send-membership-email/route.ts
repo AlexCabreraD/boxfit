@@ -167,7 +167,6 @@ function generateEmailHTML(emailData: EmailData): string {
     .alert { background-color: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 15px; border-radius: 5px; margin: 15px 0; }
     .success { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
     .action-box { background: linear-gradient(135deg, #2196F3, #1976D2); color: white; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; }
-    .action-box a { color: white; background-color: rgba(255,255,255,0.2); padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; }
     .legal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .status-complete { color: #28a745; font-weight: bold; }
     .status-missing { color: #dc3545; font-weight: bold; }
@@ -251,14 +250,7 @@ function generateEmailHTML(emailData: EmailData): string {
       <div class="info-item"><span class="label">Billing Address:</span> <span class="value">${billing.address}</span></div>
     </div>
 
-    <div class="action-box">
-      <h3 style="margin-top: 0;">💳 Payment Setup Status</h3>
-      <p>The member has been provided with the secure payment link and instructed to complete setup by their second class:</p>
-      <a href="${paymentLink}" target="_blank">View Payment Link</a>
-      <p style="margin-bottom: 0; font-size: 14px; opacity: 0.9;">✅ Member has payment link • ⚠️ Verify setup is complete by second class</p>
-    </div>
-
-    <div class="section">
+     <div class="section">
       <h2>📋 Legal Agreements Status</h2>
       <div class="legal-grid">
         <div class="info-item">Liability Waiver: <span class="${legalAgreements.liabilityWaiver.includes("✅") ? "status-complete" : "status-missing"}">${legalAgreements.liabilityWaiver}</span></div>
@@ -280,6 +272,12 @@ function generateEmailHTML(emailData: EmailData): string {
         <div class="info-item">Boxer ID: <span class="${documents.boxerIdProvided.includes("✅") ? "status-complete" : "status-missing"}">${documents.boxerIdProvided}</span></div>
         <div class="info-item">Guardian ID: <span class="${documents.guardianIdProvided.includes("✅") ? "status-complete" : "status-missing"}">${documents.guardianIdProvided}</span></div>
       </div>
+    </div>
+    
+    <div class="action-box">
+      <h3 style="margin-top: 0;">💳 Payment Setup Status</h3>
+      <p>The member has been provided with the secure payment link and instructed to complete setup by their second class</p>
+      <p style="margin-bottom: 0; font-size: 14px; opacity: 0.9;">✅ Member has payment link • ⚠️ Verify setup is complete by second class</p>
     </div>
 
     <div class="alert success">
