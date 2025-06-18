@@ -19,11 +19,11 @@ const PaymentInfoStep: React.FC<PersonalInfoStepProps> = ({
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          Membership Selection & Payment Information
+          Membership Selection & Payment Setup
         </h2>
         <p className="text-gray-600">
-          Confirm your membership plan and provide payment details for monthly
-          billing.
+          Confirm your membership plan and provide information for payment setup
+          after your free trial.
         </p>
       </div>
 
@@ -50,16 +50,17 @@ const PaymentInfoStep: React.FC<PersonalInfoStepProps> = ({
         </div>
       </div>
 
-      {/* Billing Information */}
+      {/* Payment Setup Information */}
       <div className="border-t pt-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">
-          Billing Information
+          Payment Setup Information
         </h3>
-        <div className="p-4 bg-blue-50 border border-blue-200 rounded-md mb-4">
-          <p className="text-sm text-blue-800">
-            <strong>Monthly Billing:</strong> Your card will be charged{" "}
-            {membershipPrice} on the 2nd of each month. To cancel, you must
-            provide 30 days written notice before the 1st of the month.
+        <div className="p-4 bg-green-50 border border-green-200 rounded-md mb-4">
+          <p className="text-sm text-green-800">
+            <strong>No Immediate Charges:</strong> You will not be charged until
+            after completing your free trial class. If you decide to continue,
+            billing begins with your second class and continues monthly
+            thereafter.
           </p>
         </div>
 
@@ -69,7 +70,7 @@ const PaymentInfoStep: React.FC<PersonalInfoStepProps> = ({
               htmlFor="startDate"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              Desired Start Date
+              Desired Start Date (for your free trial)
             </label>
             <input
               type="date"
@@ -87,7 +88,8 @@ const PaymentInfoStep: React.FC<PersonalInfoStepProps> = ({
               htmlFor="cardholderName"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              Cardholder Name <span className="text-red-500">*</span>
+              Full Name (as it will appear on billing){" "}
+              <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -95,17 +97,19 @@ const PaymentInfoStep: React.FC<PersonalInfoStepProps> = ({
               name="cardholderName"
               value={formData.cardholderName}
               onChange={handleChange}
-              placeholder="As it appears on card"
+              placeholder="Full name for billing"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
               required
             />
           </div>
 
-          <div className="p-4 bg-gray-100 rounded-md">
-            <p className="text-sm text-gray-700 mb-2">
-              <strong>Payment Processing:</strong> After submitting this form,
-              our team will contact you within 24 hours to securely process your
-              payment information and finalize your membership setup.
+          <div className="p-4 bg-blue-50 border border-blue-200 rounded-md">
+            <p className="text-sm text-blue-800 mb-2">
+              <strong>Payment Setup:</strong> After submitting this form,
+              you&#39;ll receive a secure payment link to set up your membership
+              billing. You will not be charged until after your free trial
+              class, and you can cancel anytime if you decide BoxFit isn&#39;t
+              the right fit for you.
             </p>
           </div>
 
@@ -200,16 +204,18 @@ const PaymentInfoStep: React.FC<PersonalInfoStepProps> = ({
         </h3>
         <div className="bg-gray-50 rounded-lg p-4 space-y-2">
           <div className="flex justify-between">
-            <span className="text-gray-600">Selected Plan:</span>
-            <span className="font-semibold">{membershipName}</span>
+            <span className="text-gray-600">Free Trial:</span>
+            <span className="font-semibold">First class is FREE</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-600">Monthly Fee:</span>
+            <span className="text-gray-600">
+              Monthly Fee (starts after trial):
+            </span>
             <span className="font-semibold">{membershipPrice}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-600">Billing Date:</span>
-            <span className="font-semibold">2nd of each month</span>
+            <span className="text-gray-600">Billing Starts:</span>
+            <span className="font-semibold">After your second class</span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-600">Cancellation Notice:</span>

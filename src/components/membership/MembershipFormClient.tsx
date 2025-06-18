@@ -15,7 +15,7 @@ import FormNavigation from "./components/FormNavigation";
 import SuccessMessage from "./components/SuccessMessage";
 
 const MembershipSignupForm = () => {
-  const [currentStep, setCurrentStep] = useState<FormStep>(0); // Start at 0 for membership selection
+  const [currentStep, setCurrentStep] = useState<FormStep>(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -282,7 +282,7 @@ const MembershipSignupForm = () => {
             </div>
             <p className="text-gray-600 mb-6">
               Are you sure you want to leave? Your progress will be lost and
-              you'll need to start over.
+              you&#39;ll need to start over.
             </p>
             <div className="flex justify-end space-x-3">
               <button

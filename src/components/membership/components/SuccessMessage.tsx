@@ -48,14 +48,22 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({ formData }) => {
             <li className="flex items-start">
               <span className="font-semibold mr-2">2.</span>
               <span>
-                We&#39;ll schedule your free trial class at a time that works
-                for you.
+                Set up your payment information using the secure link below (no
+                charge until after your trial).
               </span>
             </li>
             <li className="flex items-start">
               <span className="font-semibold mr-2">3.</span>
               <span>
-                Complete payment setup for your{" "}
+                We&#39;ll schedule your free trial class at a time that works
+                for you.
+              </span>
+            </li>
+            <li className="flex items-start">
+              <span className="font-semibold mr-2">4.</span>
+              <span>
+                After your trial, if you continue, billing begins with your
+                second class for your{" "}
                 {formData.membershipPlan === "2-day"
                   ? "2-Day Access ($75/month)"
                   : "4-Day Access ($100/month)"}{" "}
@@ -63,10 +71,53 @@ const SuccessMessage: React.FC<SuccessMessageProps> = ({ formData }) => {
               </span>
             </li>
             <li className="flex items-start">
-              <span className="font-semibold mr-2">4.</span>
-              <span>Begin training!</span>
+              <span className="font-semibold mr-2">5.</span>
+              <span>Begin your boxing journey!</span>
             </li>
           </ol>
+        </div>
+
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+          <h4 className="font-semibold text-blue-800 mb-3">
+            🔒 Secure Payment Setup
+          </h4>
+          <p className="text-blue-700 text-sm mb-4">
+            Complete your payment setup now using our secure payment portal.
+            Remember: you will not be charged until after your free trial class.
+          </p>
+          <a
+            href="https://collectcheckout.com/r/f1tii0puusd8nfr5zchzdxpcozhnf2"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors font-medium"
+          >
+            Set Up Payment Information
+            <svg
+              className="ml-2 w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+          <h4 className="font-semibold text-blue-800 mb-2">
+            Important Reminder:
+          </h4>
+          <p className="text-blue-700 text-sm">
+            You will not be charged anything until after your free trial class.
+            If you decide BoxFit Utah isn&#39;t the right fit for you, simply
+            let us know and you won&#39;t be charged. We want to make sure
+            you&#39;re completely satisfied with your boxing experience!
+          </p>
         </div>
 
         <div className="border-t pt-6">

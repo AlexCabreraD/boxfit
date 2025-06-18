@@ -36,7 +36,7 @@ const LegalWaiversStep: React.FC<PersonalInfoStepProps> = ({
     {
       name: "agreeToPaymentTerms",
       title: "Payment Terms and Cancellation Policy",
-      content: `I authorize BoxFit Utah to charge my payment method ${formData.membershipPlan === "2-day" ? "$75" : "$100"} monthly on the 2nd of each month. A late fee of $20 will be charged for all payments that are not honored upon first presentment. Interest will accrue at eighteen (18) percent per annum for all late and/or missed payments. I understand that I must provide 30 days notice before the 1st of the month to cancel, and that the notice period constitutes one full billing cycle. I acknowledge my right to cancel this contract at any time prior to midnight of the third business day after execution.`,
+      content: `I authorize BoxFit Utah to charge my payment method ${formData.membershipPlan === "2-day" ? "$75" : "$100"} monthly beginning after my free trial class. My first payment will be processed after my second class, and subsequent payments will be charged monthly thereafter. A late fee of $20 will be charged for all payments that are not honored upon first presentment. Interest will accrue at eighteen (18) percent per annum for all late and/or missed payments. I understand that I must provide 30 days notice before the 1st of the month to cancel, and that the notice period constitutes one full billing cycle. I acknowledge my right to cancel this contract at any time prior to midnight of the third business day after execution, and understand that I will not be charged unless I continue training beyond my free trial.`,
     },
     {
       name: "agreeToClaimsProcedures",
@@ -67,11 +67,12 @@ const LegalWaiversStep: React.FC<PersonalInfoStepProps> = ({
       name: "agreeToPhotoRelease",
       title: "Photo/Video Release for Promotion Purposes",
       content: `I grant BoxFit Utah permission to use photographs or videos of me taken during training for promotional purposes including social media, website, and marketing materials. This agreement is optional and does not affect membership eligibility.`,
+      optional: true,
     },
     {
       name: "agreeToCancellationPolicy",
       title: "Cancellation Policy Acknowledgment",
-      content: `I understand that to cancel my membership, I must provide written notice (email or written letter) 30 days before the 1st of the month. Cancellations received after the 1st will be effective the following month. No refunds will be provided for partial months. I acknowledge my consumer right to cancel this contract within three business days of execution.`,
+      content: `I understand that to cancel my membership, I must provide written notice (email or written letter) 30 days before the 1st of the month. Cancellations received after the 1st will be effective the following month. No refunds will be provided for partial months. I acknowledge my consumer right to cancel this contract within three business days of execution. I understand that I can cancel after my free trial if BoxFit Utah is not the right fit for me.`,
     },
   ];
 
@@ -101,6 +102,13 @@ const LegalWaiversStep: React.FC<PersonalInfoStepProps> = ({
             <strong>Consumer Rights Notice:</strong> You have the right to
             cancel this contract at any time prior to midnight of the third
             business day after the date on which the contract is executed.
+          </p>
+        </div>
+        <div className="mt-2 p-3 bg-green-50 border border-green-200 rounded-md">
+          <p className="text-sm text-green-800">
+            <strong>Free Trial Protection:</strong> You will not be charged
+            until after your free trial class. You can cancel if BoxFit Utah
+            isn&#39;t the right fit for you.
           </p>
         </div>
       </div>

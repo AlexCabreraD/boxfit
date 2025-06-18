@@ -19,6 +19,17 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
   onSubmit,
   isSubmitting,
 }) => {
+  const getNextButtonText = () => {
+    if (currentStep === 0) return "Continue with Selected Plan";
+    if (currentStep < totalSteps - 1) return "Next Step";
+    return "Complete Application";
+  };
+
+  const getSubmitButtonText = () => {
+    if (isSubmitting) return "Submitting Application...";
+    return "Complete Registration (Free Trial)";
+  };
+
   return (
     <div className="mt-8 pt-6 border-t flex justify-between">
       {currentStep > 0 && (
@@ -43,7 +54,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
           >
-            {currentStep === 0 ? "Continue with Selected Plan" : "Next Step"}
+            {getNextButtonText()}
           </button>
         ) : (
           <button
@@ -56,7 +67,7 @@ const FormNavigation: React.FC<FormNavigationProps> = ({
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
           >
-            {isSubmitting ? "Submitting..." : "Complete Registration"}
+            {getSubmitButtonText()}
           </button>
         )}
       </div>

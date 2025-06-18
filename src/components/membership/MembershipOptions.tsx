@@ -76,7 +76,7 @@ const MembershipOptions = () => {
               </div>
             </div>
 
-            <MembershipFormClient selectedPlan={plan} />
+            <MembershipFormClient />
           </div>
         </div>
       </div>

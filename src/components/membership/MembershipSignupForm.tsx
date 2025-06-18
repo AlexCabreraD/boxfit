@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+import { FiArrowLeft, FiAlertTriangle } from "react-icons/fi";
 import PersonalInfoStep from "./steps/PersonalInfoStep";
 import MedicalInfoStep from "./steps/MedicalInfoStep";
 import GuardianInfoStep from "./steps/GuardianInfoStep";
@@ -7,7 +9,7 @@ import SignaturesStep from "./steps/SignaturesStep";
 import PaymentInfoStep from "./steps/PaymentInfoStep";
 import MembershipSelection from "./steps/MembershipSelection";
 import { FormData, FormStep } from "./types/membershipTypes";
-import { submitToAirtable } from "./utils/airtableSubmit";
+import { submitMembershipApplication } from "./utils/emailSubmit";
 import FormProgress from "./components/FormProgress";
 import FormNavigation from "./components/FormNavigation";
 import SuccessMessage from "./components/SuccessMessage";
@@ -17,6 +19,7 @@ const MembershipSignupForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [showExitWarning, setShowExitWarning] = useState(false);
 
   const [formData, setFormData] = useState<FormData>({
     // Personal Information
@@ -124,6 +127,23 @@ const MembershipSignupForm = () => {
     setFormData((prev) => ({ ...prev, ...updates }));
   };
 
+  const hasFormProgress = () => {
+    // Check if user has made any progress beyond the first step
+    return currentStep > 0 || formData.membershipPlan !== "";
+  };
+
+  const handleBackToHome = () => {
+    if (hasFormProgress()) {
+      setShowExitWarning(true);
+    } else {
+      window.location.href = "/";
+    }
+  };
+
+  const confirmBackToHome = () => {
+    window.location.href = "/";
+  };
+
   const validateCurrentStep = (): boolean => {
     switch (currentStep) {
       case 0: // Membership Selection
@@ -219,11 +239,13 @@ const MembershipSignupForm = () => {
     setSubmitError("");
 
     try {
-      await submitToAirtable(formData);
+      await submitMembershipApplication(formData);
       setSubmitSuccess(true);
     } catch (error) {
       setSubmitError(
-        "There was an error submitting your application. Please try again or contact us at (385) 626-3514.",
+        error instanceof Error
+          ? error.message
+          : "There was an error submitting your application. Please try again or contact us at (385) 626-3514.",
       );
       console.error("Submission error:", error);
     } finally {
@@ -242,7 +264,7 @@ const MembershipSignupForm = () => {
     { number: 3, title: "Medical Info" },
     { number: 4, title: "Legal Waivers" },
     { number: 5, title: "Signatures" },
-    { number: 6, title: "Payment Info" },
+    { number: 6, title: "Payment Setup" },
   ];
 
   const visibleSteps = steps.filter(
@@ -251,13 +273,57 @@ const MembershipSignupForm = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
+      {showExitWarning && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
+            <div className="flex items-center mb-4">
+              <FiAlertTriangle className="text-amber-500 mr-3" size={24} />
+              <h3 className="text-lg font-semibold text-gray-900">
+                Leave Registration?
+              </h3>
+            </div>
+            <p className="text-gray-600 mb-6">
+              Are you sure you want to leave? Your progress will be lost and
+              you&#39;ll need to start over.
+            </p>
+            <div className="flex justify-end space-x-3">
+              <button
+                onClick={() => setShowExitWarning(false)}
+                className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
+              >
+                Stay Here
+              </button>
+              <button
+                onClick={confirmBackToHome}
+                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+              >
+                Leave Registration
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <button
+              onClick={handleBackToHome}
+              className="inline-flex items-center text-red-600 hover:text-red-800 transition-colors"
+            >
+              <FiArrowLeft className="mr-2" />
+              Back to Home
+            </button>
+            <div className="text-sm text-gray-500">
+              Step {currentStep + 1} of {visibleSteps.length}
+            </div>
+          </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
             BoxFit Utah Membership Application
           </h1>
           <p className="text-lg text-gray-600">
-            Complete all steps to join our boxing community
+            Complete all steps to join our boxing community - no charge until
+            after your free trial!
           </p>
         </div>
 

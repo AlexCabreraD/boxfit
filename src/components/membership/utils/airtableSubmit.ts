@@ -45,7 +45,7 @@ export const submitToAirtable = async (formData: FormData): Promise<void> => {
       formData.membershipPlan === "2-day"
         ? "2-Day Access ($75)"
         : "4-Day Access ($100)",
-    "Start Date": formData.startDate,
+    "Desired Start Date": formData.startDate,
     "Is Minor": formData.isMinor,
 
     // Legal Agreements
@@ -58,15 +58,20 @@ export const submitToAirtable = async (formData: FormData): Promise<void> => {
     "Photo Release": formData.agreeToPhotoRelease,
     "Cancellation Policy": formData.agreeToCancellationPolicy,
     "Payment Terms": formData.agreeToPaymentTerms,
+    "Claims Procedures": formData.agreeToClaimsProcedures,
+    Indemnification: formData.agreeToIndemnification,
 
     // Billing
-    "Cardholder Name": formData.cardholderName,
+    "Billing Name": formData.cardholderName,
     "Billing Address": `${formData.billingAddress}, ${formData.billingCity}, ${formData.billingState} ${formData.billingZipCode}`,
 
-    // Status
-    "Application Status": "Pending Review",
+    // Status and Payment
+    "Application Status": "Pending Review - Payment Link Needed",
     "Application Date": new Date().toISOString(),
     "Signature Date": formData.signatureDate,
+    "Payment Link":
+      "https://collectcheckout.com/r/f1tii0puusd8nfr5zchzdxpcozhnf2",
+    "Payment Status": "Awaiting Setup - No Charge Until After Trial",
 
     // Signatures
     "Boxer Signature": formData.boxerSignature ? "Yes" : "No",
@@ -80,6 +85,15 @@ export const submitToAirtable = async (formData: FormData): Promise<void> => {
         ? "Yes"
         : "No",
     "Physician Clearance": formData.physicianClearanceFile ? "Yes" : "No",
+
+    // Internal Notes for Coach Pablo
+    "Internal Notes": `Free trial scheduled. Payment link to be sent: https://collectcheckout.com/r/f1tii0puusd8nfr5zchzdxpcozhnf2. Member will not be charged until after completing free trial class and deciding to continue.`,
+
+    // Additional tracking fields
+    "Trial Status": "Scheduled",
+    "Payment Setup Required": true,
+    "Next Action":
+      "1. Review application 2. Send payment link 3. Schedule free trial",
   };
 
   // Add guardian information if minor
@@ -97,27 +111,63 @@ export const submitToAirtable = async (formData: FormData): Promise<void> => {
   }
 
   // In a real implementation, you would:
-  // 1. Upload files (IDs, physician clearance) to a file storage service
+  // 1. Upload files (IDs, physician clearance) to a file storage service (e.g., AWS S3, Cloudinary)
   // 2. Include the file URLs in the Airtable record
   // 3. Make the actual API call to Airtable
+  // 4. Send the payment link to the member via email
+  // 5. Create a follow-up task for Coach Pablo to review the application
 
   // For now, we'll simulate the API call
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // Simulate success
-      console.log("Submitting to Airtable:", airtableData);
-      console.log(reject);
-      resolve();
+      try {
+        // Simulate success
+        console.log("Submitting to Airtable:", airtableData);
+        console.log(
+          "Payment link to be sent:",
+          "https://collectcheckout.com/r/f1tii0puusd8nfr5zchzdxpcozhnf2",
+        );
 
-      // In production, you would make the actual API call here:
-      // const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Authorization': `Bearer ${API_KEY}`,
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ fields: airtableData }),
-      // });
+        // In production, you would make the actual API call here:
+        // const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`, {
+        //   method: 'POST',
+        //   headers: {
+        //     'Authorization': `Bearer ${API_KEY}`,
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify({ fields: airtableData }),
+        // });
+
+        // if (!response.ok) {
+        //   throw new Error(`Airtable API error: ${response.status}`);
+        // }
+
+        // const result = await response.json();
+        // console.log('Airtable record created:', result);
+
+        // After successful Airtable submission, send payment link via email:
+        // await sendPaymentLinkEmail({
+        //   email: formData.email || formData.guardianEmail,
+        //   name: formData.firstName,
+        //   paymentLink: "https://collectcheckout.com/r/f1tii0puusd8nfr5zchzdxpcozhnf2",
+        //   membershipPlan: formData.membershipPlan,
+        //   isMinor: formData.isMinor,
+        //   guardianEmail: formData.guardianEmail,
+        // });
+
+        // Send notification to Coach Pablo:
+        // await sendCoachNotification({
+        //   memberName: `${formData.firstName} ${formData.lastName}`,
+        //   membershipPlan: formData.membershipPlan,
+        //   isMinor: formData.isMinor,
+        //   recordId: result.id,
+        // });
+
+        resolve();
+      } catch (error) {
+        console.error("Submission error:", error);
+        reject(error);
+      }
     }, 1500);
   });
 };
