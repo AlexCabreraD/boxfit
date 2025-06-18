@@ -1,11 +1,14 @@
 import { PersonalInfoStepProps } from "@/components/membership/steps/PersonalInfoStep";
 import { FiCheck, FiArrowLeft } from "react-icons/fi";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 const MembershipSelection: React.FC<PersonalInfoStepProps> = ({
   formData,
   updateFormData,
 }) => {
+  const nextButtonRef = useRef<HTMLDivElement>(null);
+
   const pricingPlans = [
     {
       id: "2-day",
@@ -47,6 +50,20 @@ const MembershipSelection: React.FC<PersonalInfoStepProps> = ({
   const handlePlanSelection = (planId: string) => {
     updateFormData({ membershipPlan: planId });
   };
+
+  useEffect(() => {
+    if (formData.membershipPlan && nextButtonRef.current) {
+      const timer = setTimeout(() => {
+        nextButtonRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "nearest",
+        });
+      }, 300);
+
+      return () => clearTimeout(timer);
+    }
+  }, [formData.membershipPlan]);
 
   return (
     <div className="space-y-6">
@@ -146,18 +163,28 @@ const MembershipSelection: React.FC<PersonalInfoStepProps> = ({
       </div>
 
       {formData.membershipPlan && (
-        <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-          <div className="flex items-center">
+        <div
+          ref={nextButtonRef}
+          className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg scroll-mt-6"
+        >
+          <div className="flex items-center mb-2">
             <FiCheck className="text-green-600 mr-2" />
             <span className="text-green-800 font-medium">
               {pricingPlans.find((p) => p.id === formData.membershipPlan)?.name}{" "}
               selected
             </span>
           </div>
-          <p className="text-green-700 text-sm mt-1">
+          <p className="text-green-700 text-sm">
             You can proceed to the next step to complete your membership
-            application.
+            application. Remember, you won&#39;t be charged until after your
+            free trial!
           </p>
+
+          <div className="mt-4 text-center">
+            <p className="text-sm text-green-600 font-medium">
+              ⬇️ Continue below to complete your registration
+            </p>
+          </div>
         </div>
       )}
 
