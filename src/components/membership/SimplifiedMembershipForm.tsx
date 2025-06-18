@@ -29,6 +29,10 @@ interface SimplifiedFormData {
   emergencyContact: string;
   emergencyPhone: string;
 
+  // ID Files
+  memberIdFile: File | null;
+  guardianIdFile: File | null;
+
   // Membership Type
   membershipType: string;
   membershipLevel: string; // Monthly, Semi-Annual, Annual
@@ -36,12 +40,6 @@ interface SimplifiedFormData {
   // Payment Information
   startDate: string;
   initiationFee: string;
-  monthlyDues: string;
-  totalDue: string;
-  paymentMethod: string; // Cash, Check, ACH
-  creditCardType: string; // AMEX, Visa, MC, Discover
-  paymentType: string; // In full, Instalments
-  paymentBeginning: string;
 
   // Guardian Information (for minors)
   isMinor: boolean;
@@ -52,10 +50,6 @@ interface SimplifiedFormData {
   // Member Signature
   memberSignature: string;
   agreementDate: string;
-
-  // ID Files
-  memberIdFile: File | null;
-  guardianIdFile: File | null;
 }
 
 const SimplifiedMembershipForm = () => {
