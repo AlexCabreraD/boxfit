@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FiCheck, FiArrowLeft } from "react-icons/fi";
 import Link from "next/link";
+import MembershipFormClient from "./MembershipFormClient";
 
 const MembershipOptions = () => {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
@@ -74,6 +75,8 @@ const MembershipOptions = () => {
                 <span className="text-caption-text ml-2">{plan?.period}</span>
               </div>
             </div>
+
+            <MembershipFormClient />
           </div>
         </div>
       </div>
