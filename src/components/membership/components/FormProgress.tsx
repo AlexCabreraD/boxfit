@@ -10,25 +10,40 @@ const FormProgress: React.FC<FormProgressProps> = ({ currentStep, steps }) => {
     <div className="mb-8">
       {/* Mobile Progress Bar */}
       <div className="block md:hidden mb-6">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-gray-700">
-            Step {currentStep + 1} of {steps.length}
-          </span>
-          <span className="text-sm text-gray-500">
-            {Math.round(((currentStep + 1) / steps.length) * 100)}%
-          </span>
-        </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
-          <div
-            className="bg-red-600 h-2 rounded-full transition-all duration-300"
-            style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
-          ></div>
-        </div>
-        <div className="mt-2 text-center">
-          <span className="text-sm font-medium text-red-600">
-            {steps[currentStep]?.title}
-          </span>
-        </div>
+        {(() => {
+          // Find the current step in the visible steps array
+          const currentStepIndex = steps.findIndex(
+            (step) => step.number === currentStep,
+          );
+          const progressPercentage =
+            ((currentStepIndex + 1) / steps.length) * 100;
+          const currentStepTitle =
+            steps[currentStepIndex]?.title || "Loading...";
+
+          return (
+            <>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-700">
+                  Step {currentStepIndex + 1} of {steps.length}
+                </span>
+                <span className="text-sm text-gray-500">
+                  {Math.round(progressPercentage)}%
+                </span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  className="bg-red-600 h-2 rounded-full transition-all duration-300"
+                  style={{ width: `${progressPercentage}%` }}
+                ></div>
+              </div>
+              <div className="mt-2 text-center">
+                <span className="text-sm font-medium text-red-600">
+                  {currentStepTitle}
+                </span>
+              </div>
+            </>
+          );
+        })()}
       </div>
 
       {/* Desktop Step Indicators */}
