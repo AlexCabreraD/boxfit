@@ -30,29 +30,64 @@ const ContactFormClient = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus({});
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch("/api/send-contact-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(
+          `Failed to send message: ${response.status} - ${errorText}`,
+        );
+      }
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus({
+          success: true,
+          message:
+            "Thank you for your message! We'll get back to you within 24 hours.",
+        });
+
+        // Reset form after successful submission
+        setFormState({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+
+        // Clear success message after 7 seconds
+        setTimeout(() => {
+          setSubmitStatus({});
+        }, 7000);
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
       setSubmitStatus({
-        success: true,
-        message: "Thank you for your message! We'll get back to you shortly.",
+        success: false,
+        message:
+          "There was an error sending your message. Please try again or call us at (385) 626-3514.",
       });
 
-      // Reset form after successful submission
-      setFormState({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
-
-      // Clear success message after 5 seconds
+      // Clear error message after 7 seconds
       setTimeout(() => {
         setSubmitStatus({});
-      }, 5000);
-    }, 1000);
+      }, 7000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -126,7 +161,10 @@ const ContactFormClient = () => {
             <option value="Class Schedule">Class Schedule</option>
             <option value="Personal Training">Personal Training</option>
             <option value="Free Trial">Free Trial</option>
-            <option value="Become a trainer">Become a trainer</option>
+            <option value="Coaching Opportunities">
+              Coaching Opportunities
+            </option>
+            <option value="General Question">General Question</option>
             <option value="Other">Other</option>
           </select>
         </div>
@@ -152,8 +190,8 @@ const ContactFormClient = () => {
         <div
           className={`p-4 rounded-card ${
             submitStatus.success
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
+              ? "bg-green-100 text-green-800 border border-green-200"
+              : "bg-red-100 text-red-800 border border-red-200"
           }`}
         >
           {submitStatus.message}
@@ -163,12 +201,16 @@ const ContactFormClient = () => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="bg-boxing-red hover:bg-opacity-90 text-white px-6 py-3 rounded-button font-bold transition-all flex items-center justify-center"
+        className={`w-full py-3 rounded-button font-bold transition-all flex items-center justify-center ${
+          isSubmitting
+            ? "bg-gray-400 text-gray-600 cursor-not-allowed"
+            : "bg-boxing-red hover:bg-opacity-90 text-white"
+        }`}
       >
         {isSubmitting ? (
           <span className="inline-flex items-center">
             <svg
-              className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+              className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -195,6 +237,19 @@ const ContactFormClient = () => {
           </span>
         )}
       </button>
+
+      <div className="text-center text-sm text-gray-600">
+        <p>We typically respond within 24 hours</p>
+        <p className="mt-1">
+          For urgent matters, call us at{" "}
+          <a
+            href="tel:+13856263514"
+            className="text-boxing-red hover:underline"
+          >
+            (385) 626-3514
+          </a>
+        </p>
+      </div>
     </form>
   );
 };
