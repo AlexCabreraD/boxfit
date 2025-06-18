@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
 
     const { data, error } = await resend.emails.send({
       from: "BoxFit Utah Membership <membership@boxfit-utah.com>",
-      to: ["BoxfitUtah@gmail.com"],
+      to: ["AlexCabreraD22@gmail.com"],
       subject: `🥊 New Membership Application - ${formData.firstName} ${formData.lastName}`,
       html: emailHtml,
       attachments: [
@@ -263,7 +263,6 @@ function generateMembershipAgreementHTML(formData: SimplifiedFormData): string {
       Discover <span class="checkbox">${formData.creditCardType === "Discover" ? "✓" : ""}</span>
     </p>
     <p>
-      Sales Tax: $<span class="form-field">${formData.salesTax}</span> 
       Payment Method: 
       In full <span class="checkbox">${formData.paymentType === "In full" ? "✓" : ""}</span> 
       Instalments <span class="checkbox">${formData.paymentType === "Instalments" ? "✓" : ""}</span>

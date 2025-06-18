@@ -2,7 +2,13 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { FiArrowLeft, FiUser, FiCalendar, FiDollarSign } from "react-icons/fi";
+import {
+  FiArrowLeft,
+  FiUser,
+  FiCalendar,
+  FiDollarSign,
+  FiUpload,
+} from "react-icons/fi";
 import Link from "next/link";
 
 interface SimplifiedFormData {
@@ -46,12 +52,17 @@ interface SimplifiedFormData {
   // Member Signature
   memberSignature: string;
   agreementDate: string;
+
+  // ID Files
+  memberIdFile: File | null;
+  guardianIdFile: File | null;
 }
 
 const SimplifiedMembershipForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [validationErrors, setValidationErrors] = useState<string[]>([]);
 
   const memberCanvasRef = useRef<HTMLCanvasElement>(null);
   const guardianCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -90,7 +101,52 @@ const SimplifiedMembershipForm = () => {
     guardianSignature: "",
     memberSignature: "",
     agreementDate: new Date().toISOString().split("T")[0],
+    memberIdFile: null,
+    guardianIdFile: null,
   });
+
+  // Form validation function
+  const validateForm = (): string[] => {
+    const errors: string[] = [];
+
+    // Required personal information
+    if (!formData.firstName.trim()) errors.push("First Name is required");
+    if (!formData.lastName.trim()) errors.push("Last Name is required");
+    if (!formData.birthdate) errors.push("Birthdate is required");
+    if (!formData.address.trim()) errors.push("Address is required");
+    if (!formData.city.trim()) errors.push("City is required");
+    if (!formData.zipCode.trim()) errors.push("ZIP Code is required");
+    if (!formData.email.trim()) errors.push("Email is required");
+    if (!formData.cellPhone.trim()) errors.push("Cell Phone is required");
+    if (!formData.emergencyContact.trim())
+      errors.push("Emergency Contact is required");
+    if (!formData.emergencyPhone.trim())
+      errors.push("Emergency Phone is required");
+
+    // Membership selection
+    if (!formData.membershipType)
+      errors.push("Membership Type must be selected");
+
+    // Payment information
+    if (!formData.startDate) errors.push("Start Date is required");
+
+    // Signatures
+    if (!formData.memberSignature) errors.push("Member signature is required");
+    if (formData.isMinor && !formData.guardianSignature)
+      errors.push("Guardian signature is required");
+    if (formData.isMinor && !formData.guardianName.trim())
+      errors.push("Guardian Name is required");
+
+    // ID Files
+    if (!formData.isMinor && !formData.memberIdFile) {
+      errors.push("Member ID upload is required");
+    }
+    if (formData.isMinor && !formData.guardianIdFile) {
+      errors.push("Guardian ID upload is required");
+    }
+
+    return errors;
+  };
 
   // Canvas signature handling
   React.useEffect(() => {
@@ -293,8 +349,30 @@ const SimplifiedMembershipForm = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleFileChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    fileType: "member" | "guardian",
+  ) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFormData((prev) => ({
+        ...prev,
+        [fileType === "member" ? "memberIdFile" : "guardianIdFile"]: file,
+      }));
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate form
+    const errors = validateForm();
+    setValidationErrors(errors);
+
+    if (errors.length > 0) {
+      return; // Don't submit if there are validation errors
+    }
+
     setIsSubmitting(true);
     setSubmitError("");
 
@@ -321,6 +399,8 @@ const SimplifiedMembershipForm = () => {
       setIsSubmitting(false);
     }
   };
+
+  const isFormValid = validateForm().length === 0;
 
   if (submitSuccess) {
     return (
@@ -444,6 +524,19 @@ const SimplifiedMembershipForm = () => {
           {submitError && (
             <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
               {submitError}
+            </div>
+          )}
+
+          {validationErrors.length > 0 && (
+            <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <h4 className="font-semibold text-yellow-800 mb-2">
+                Please complete the following required fields:
+              </h4>
+              <ul className="text-yellow-700 text-sm list-disc list-inside">
+                {validationErrors.map((error, index) => (
+                  <li key={index}>{error}</li>
+                ))}
+              </ul>
             </div>
           )}
 
@@ -650,7 +743,8 @@ const SimplifiedMembershipForm = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Emergency Contact <span className="text-red-500">*</span>
+                    Emergency Contact Name{" "}
+                    <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -675,6 +769,75 @@ const SimplifiedMembershipForm = () => {
                   />
                 </div>
               </div>
+            </div>
+
+            {/* Photo ID Upload Section */}
+            <div className="border-b pb-8">
+              <div className="flex items-center mb-6">
+                <FiUpload className="text-red-600 mr-3" size={24} />
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Photo Identification
+                </h2>
+              </div>
+
+              <div className="mb-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                <p className="text-amber-800 text-sm">
+                  <strong>Legal Requirement:</strong> We are required by law to
+                  have a valid government-issued photo ID on file for all
+                  members. For minors under 18, we need the guardian's ID
+                  instead.
+                </p>
+              </div>
+
+              {!formData.isMinor ? (
+                // Member ID Upload (for adults)
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Upload Your Photo ID <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*,.pdf"
+                    onChange={(e) => handleFileChange(e, "member")}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                    required
+                  />
+                  <p className="mt-1 text-sm text-gray-500">
+                    Accepted formats: JPG, PNG, PDF (max 10MB). Please upload a
+                    clear photo of your driver's license, state ID, or passport.
+                  </p>
+                  {formData.memberIdFile && (
+                    <p className="mt-2 text-sm text-green-600">
+                      ✓ File uploaded: {formData.memberIdFile.name}
+                    </p>
+                  )}
+                </div>
+              ) : (
+                // Guardian ID Upload (for minors)
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Upload Guardian/Parent Photo ID{" "}
+                    <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*,.pdf"
+                    onChange={(e) => handleFileChange(e, "guardian")}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                    required
+                  />
+                  <p className="mt-1 text-sm text-gray-500">
+                    Accepted formats: JPG, PNG, PDF (max 10MB). Please upload a
+                    clear photo of the parent/guardian's driver's license, state
+                    ID, or passport.
+                  </p>
+                  {formData.guardianIdFile && (
+                    <p className="mt-2 text-sm text-green-600">
+                      ✓ File uploaded: {formData.guardianIdFile.name}
+                    </p>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Membership Type Section */}
@@ -1213,19 +1376,25 @@ const SimplifiedMembershipForm = () => {
               </div>
             </div>
 
-            {/* Submit Button */}
+            {/* Form Validation Notice and Submit Button */}
             <div className="text-center">
+              {!isFormValid && (
+                <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <p className="text-yellow-800 font-medium mb-2">
+                    ⚠️ Please complete all required fields before submitting
+                  </p>
+                  <p className="text-yellow-700 text-sm">
+                    All fields marked with a red asterisk (*) are required,
+                    including signatures and ID upload.
+                  </p>
+                </div>
+              )}
+
               <button
                 type="submit"
-                disabled={
-                  isSubmitting ||
-                  !formData.memberSignature ||
-                  (formData.isMinor && !formData.guardianSignature)
-                }
+                disabled={isSubmitting || !isFormValid}
                 className={`px-8 py-3 rounded-md font-bold text-lg transition-colors ${
-                  isSubmitting ||
-                  !formData.memberSignature ||
-                  (formData.isMinor && !formData.guardianSignature)
+                  isSubmitting || !isFormValid
                     ? "bg-gray-400 text-gray-600 cursor-not-allowed"
                     : "bg-red-600 text-white hover:bg-red-700"
                 }`}
