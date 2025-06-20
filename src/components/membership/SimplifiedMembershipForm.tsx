@@ -328,6 +328,52 @@ const SimplifiedMembershipForm = () => {
     }
   };
 
+  const downloadAgreement = async () => {
+    try {
+      const formDataWithSignatures = {
+        ...formData,
+        memberSignature: formData.memberSignature,
+        guardianSignature: formData.guardianSignature,
+        agreementDate: new Date().toLocaleDateString(),
+      };
+
+      const response = await fetch("/api/download-membership-pdf", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formDataWithSignatures),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to generate PDF");
+      }
+
+      // Get the HTML content
+      const htmlContent = await response.text();
+
+      // Create a blob and download it
+      const blob = new Blob([htmlContent], { type: "text/html" });
+      const url = window.URL.createObjectURL(blob);
+
+      // Create a temporary link and click it to download
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `BoxFit_Utah_Agreement_${formData.firstName}_${formData.lastName}_${new Date().toISOString().split("T")[0]}.html`;
+      document.body.appendChild(link);
+      link.click();
+
+      // Clean up
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Download error:", error);
+      alert(
+        "There was an error downloading your agreement. Please contact us at (385) 626-3514.",
+      );
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -455,12 +501,7 @@ const SimplifiedMembershipForm = () => {
               records.
             </p>
             <button
-              onClick={() =>
-                window.open(
-                  `/api/download-membership-pdf?id=${Date.now()}`,
-                  "_blank",
-                )
-              }
+              onClick={downloadAgreement}
               className="inline-flex items-center justify-center px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors font-medium"
             >
               Download Agreement PDF
@@ -1392,7 +1433,7 @@ const SimplifiedMembershipForm = () => {
               <button
                 type="submit"
                 disabled={isSubmitting || !isFormValid}
-                className={`px-8 py-3 rounded-md font-bold text-lg transition-colors ${
+                className={`px-8 py-3 rounded-md font-bold text-lg transition-colors hover:cursor-pointer ${
                   isSubmitting || !isFormValid
                     ? "bg-gray-400 text-gray-600 cursor-not-allowed"
                     : "bg-red-600 text-white hover:bg-red-700"
