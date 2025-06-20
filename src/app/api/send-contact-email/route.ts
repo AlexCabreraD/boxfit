@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 
     const { data, error } = await resend.emails.send({
       from: "BoxFit Utah Contact <contact@boxfit-utah.com>",
-      to: ["BoxfitUtah@gmail.com"],
+      to: ["AlexCabreraD22@gmail.com"],
       subject: `🥊 Contact Form: ${formData.subject} - ${formData.name}`,
       html: htmlContent,
     });
