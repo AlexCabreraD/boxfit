@@ -1,11 +1,8 @@
 // src/app/api/download-membership-pdf/route.ts
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get("id");
-
     // In a real implementation, you'd retrieve the form data from your database using the ID
     // For now, we'll create a sample PDF content
     const sampleFormData = {

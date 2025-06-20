@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
 
     const { data, error } = await resend.emails.send({
       from: "BoxFit Utah Membership <membership@boxfit-utah.com>",
-      to: ["AlexCabreraD22@gmail.com"],
+      to: ["BoxfitUtah@gmail.com"],
       subject: `🥊 New Membership Application - ${formData.firstName} ${formData.lastName}`,
       html: emailHtml,
       attachments: [

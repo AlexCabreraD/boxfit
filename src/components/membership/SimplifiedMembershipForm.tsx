@@ -318,7 +318,6 @@ const SimplifiedMembershipForm = () => {
     }
   }, [formData.membershipType]);
 
-  // Auto-fill dates
   React.useEffect(() => {
     const today = new Date();
     const nextWeek = new Date(today);
@@ -365,17 +364,42 @@ const SimplifiedMembershipForm = () => {
     setSubmitError("");
 
     try {
-      const response = await fetch("/api/submit-simplified-membership", {
+      // Convert ID files to base64 if they exist
+      let memberIdFileBase64 = "";
+      let guardianIdFileBase64 = "";
+
+      if (!formData.isMinor && formData.memberIdFile) {
+        memberIdFileBase64 = await fileToBase64(formData.memberIdFile);
+      }
+
+      if (formData.isMinor && formData.guardianIdFile) {
+        guardianIdFileBase64 = await fileToBase64(formData.guardianIdFile);
+      }
+
+      // Use the new PDF API endpoint
+      const response = await fetch("/api/generate-membership-pdf", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          agreementDate: new Date().toLocaleDateString(),
+          memberSignature: formData.memberSignature,
+          guardianSignature: formData.guardianSignature,
+          memberIdFile: memberIdFileBase64,
+          guardianIdFile: guardianIdFileBase64,
+        }),
       });
 
       if (!response.ok) {
         throw new Error("Failed to submit application");
       }
+
+      const result = await response.json();
+      console.log("PDF generated successfully:", result.filename);
+      console.log("Signatures attached:", result.signaturesAttached);
+      console.log("ID files attached:", result.idFilesAttached);
 
       setSubmitSuccess(true);
     } catch (error) {
@@ -386,6 +410,15 @@ const SimplifiedMembershipForm = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
   };
 
   const isFormValid = validateForm().length === 0;
@@ -1214,7 +1247,9 @@ const SimplifiedMembershipForm = () => {
                       name="agreementDate"
                       value={formData.agreementDate}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      readOnly
+                      disabled
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-gray-50"
                     />
                   </div>
                 </div>
@@ -1282,7 +1317,7 @@ const SimplifiedMembershipForm = () => {
                         value={formData.guardianName}
                         onChange={handleChange}
                         required={formData.isMinor}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                        className="w-full px-3 py-2 border border-gray-300 bg-white rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"
                       />
                     </div>
                     <div>
@@ -1293,6 +1328,7 @@ const SimplifiedMembershipForm = () => {
                         type="date"
                         value={formData.agreementDate}
                         readOnly
+                        disabled
                         className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
                       />
                     </div>
@@ -1397,7 +1433,6 @@ const SimplifiedMembershipForm = () => {
                 By submitting this form, you agree to all terms and conditions
                 outlined above.
                 <br />
-                You will receive a copy of your completed agreement via email.
               </p>
             </div>
           </form>
