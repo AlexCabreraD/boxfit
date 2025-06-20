@@ -1,4 +1,3 @@
-// src/components/membership/SimplifiedMembershipForm.tsx
 "use client";
 
 import React, { useState, useRef } from "react";
@@ -12,7 +11,6 @@ import {
 import Link from "next/link";
 
 interface SimplifiedFormData {
-  // Personal Information
   firstName: string;
   lastName: string;
   middleInitial: string;
@@ -29,26 +27,21 @@ interface SimplifiedFormData {
   emergencyContact: string;
   emergencyPhone: string;
 
-  // ID Files
   memberIdFile: File | null;
   guardianIdFile: File | null;
 
-  // Membership Type
   membershipType: string;
-  membershipLevel: string; // Monthly, Semi-Annual, Annual
+  membershipLevel: string;
   totalDue: string;
 
-  // Payment Information
   startDate: string;
   initiationFee: string;
 
-  // Guardian Information (for minors)
   isMinor: boolean;
   participantAge: string;
   guardianName: string;
   guardianSignature: string;
 
-  // Member Signature
   memberSignature: string;
   agreementDate: string;
 }
@@ -95,11 +88,9 @@ const SimplifiedMembershipForm = () => {
     guardianIdFile: null,
   });
 
-  // Form validation function
   const validateForm = (): string[] => {
     const errors: string[] = [];
 
-    // Required personal information
     if (!formData.firstName.trim()) errors.push("First Name is required");
     if (!formData.lastName.trim()) errors.push("Last Name is required");
     if (!formData.birthdate) errors.push("Birthdate is required");
@@ -113,21 +104,17 @@ const SimplifiedMembershipForm = () => {
     if (!formData.emergencyPhone.trim())
       errors.push("Emergency Phone is required");
 
-    // Membership selection
     if (!formData.membershipType)
       errors.push("Membership Type must be selected");
 
-    // Payment information
     if (!formData.startDate) errors.push("Start Date is required");
 
-    // Signatures
     if (!formData.memberSignature) errors.push("Member signature is required");
     if (formData.isMinor && !formData.guardianSignature)
       errors.push("Guardian signature is required");
     if (formData.isMinor && !formData.guardianName.trim())
       errors.push("Guardian Name is required");
 
-    // ID Files
     if (!formData.isMinor && !formData.memberIdFile) {
       errors.push("Member ID upload is required");
     }
@@ -138,19 +125,18 @@ const SimplifiedMembershipForm = () => {
     return errors;
   };
 
-  // Canvas signature handling
   React.useEffect(() => {
     const initCanvas = (canvas: HTMLCanvasElement | null) => {
       if (!canvas) return;
       const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * 2; // Higher resolution for better quality
+      canvas.width = rect.width * 2;
       canvas.height = rect.height * 2;
       canvas.style.width = rect.width + "px";
       canvas.style.height = rect.height + "px";
 
       const ctx = canvas.getContext("2d");
       if (ctx) {
-        ctx.scale(2, 2); // Scale for high DPI
+        ctx.scale(2, 2);
         ctx.strokeStyle = "#000";
         ctx.lineWidth = 2;
         ctx.lineCap = "round";
@@ -201,7 +187,6 @@ const SimplifiedMembershipForm = () => {
       setIsDrawingMember(true);
     }
 
-    // Start a new path - this prevents connecting to previous strokes
     ctx.beginPath();
     ctx.moveTo(pos.x, pos.y);
   };
@@ -225,7 +210,6 @@ const SimplifiedMembershipForm = () => {
 
     const pos = getMousePos(canvas, e);
 
-    // Draw line to current position
     ctx.lineTo(pos.x, pos.y);
     ctx.stroke();
   };
@@ -244,11 +228,9 @@ const SimplifiedMembershipForm = () => {
     if (canvas) {
       const ctx = canvas.getContext("2d");
       if (ctx) {
-        // End the current path
         ctx.beginPath();
       }
 
-      // Update form data with signature
       setFormData((prev) => ({
         ...prev,
         [isGuardian ? "guardianSignature" : "memberSignature"]:
@@ -273,7 +255,6 @@ const SimplifiedMembershipForm = () => {
     }
   };
 
-  // Calculate if user is a minor based on birthdate
   React.useEffect(() => {
     if (formData.birthdate) {
       const today = new Date();
@@ -297,17 +278,15 @@ const SimplifiedMembershipForm = () => {
     }
   }, [formData.birthdate]);
 
-  // Calculate membership pricing
   React.useEffect(() => {
     if (formData.membershipType) {
       let totalAmount = 0;
       if (formData.membershipType === "2-day") {
-        totalAmount = 75; // Post-tax price
+        totalAmount = 75;
       } else if (formData.membershipType === "4-day") {
-        totalAmount = 100; // Post-tax price
+        totalAmount = 100;
       }
 
-      // Calculate pre-tax amount (reverse calculate from total)
       const preTaxAmount = Math.round((totalAmount / 1.0725) * 100) / 100;
 
       setFormData((prev) => ({
@@ -352,19 +331,17 @@ const SimplifiedMembershipForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate form
     const errors = validateForm();
     setValidationErrors(errors);
 
     if (errors.length > 0) {
-      return; // Don't submit if there are validation errors
+      return;
     }
 
     setIsSubmitting(true);
     setSubmitError("");
 
     try {
-      // Convert ID files to base64 if they exist
       let memberIdFileBase64 = "";
       let guardianIdFileBase64 = "";
 
@@ -376,7 +353,6 @@ const SimplifiedMembershipForm = () => {
         guardianIdFileBase64 = await fileToBase64(formData.guardianIdFile);
       }
 
-      // Use the new PDF API endpoint
       const response = await fetch("/api/generate-membership-pdf", {
         method: "POST",
         headers: {
@@ -811,7 +787,6 @@ const SimplifiedMembershipForm = () => {
               </div>
 
               {!formData.isMinor ? (
-                // Member ID Upload (for adults)
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Upload Your Photo ID <span className="text-red-500">*</span>
@@ -835,7 +810,6 @@ const SimplifiedMembershipForm = () => {
                   )}
                 </div>
               ) : (
-                // Guardian ID Upload (for minors)
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Upload Guardian/Parent Photo ID{" "}

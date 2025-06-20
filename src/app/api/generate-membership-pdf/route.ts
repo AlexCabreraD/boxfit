@@ -36,9 +36,8 @@ interface MembershipFormData {
   guardianSignature: string;
   memberSignature: string;
   agreementDate: string;
-  // ID Files
-  memberIdFile?: string; // base64 encoded file
-  guardianIdFile?: string; // base64 encoded file
+  memberIdFile?: string;
+  guardianIdFile?: string;
 }
 
 export async function POST(request: NextRequest) {
@@ -53,19 +52,14 @@ export async function POST(request: NextRequest) {
 
     const formData: MembershipFormData = await request.json();
 
-    // Extract signature images if they exist
     const signatures = extractSignatureFiles(formData);
 
-    // Extract ID files if they exist
     const idFiles = extractIdFiles(formData);
 
-    // Generate a clean HTML version that can be printed
     const htmlContent = generatePrintableHTML(formData);
 
-    // Convert HTML to base64
     const htmlBase64 = Buffer.from(htmlContent).toString("base64");
 
-    // Generate notification email
     const emailHtml = generateNotificationEmailHTML(
       formData,
       signatures.length > 0,
@@ -73,20 +67,18 @@ export async function POST(request: NextRequest) {
 
     const filename = `BoxFit_Utah_Agreement_${formData.firstName}_${formData.lastName}_${new Date().toISOString().split("T")[0]}.html`;
 
-    // Prepare email attachments
     const attachments = [
       {
         filename: filename,
         content: htmlBase64,
       },
-      ...signatures, // Add signature PNG files
-      ...idFiles, // Add ID files
+      ...signatures,
+      ...idFiles,
     ];
 
-    // Send email with HTML and all attachments
     const { data, error } = await resend.emails.send({
       from: "BoxFit Utah Membership <membership@boxfit-utah.com>",
-      to: ["BoxfitUtah@gmail.com"], // Replace with your email
+      to: ["BoxfitUtah@gmail.com"],
       subject: `🥊 New Membership Application - ${formData.firstName} ${formData.lastName} (WITH SIGNATURES)`,
       html: emailHtml,
       attachments: attachments,
@@ -120,7 +112,6 @@ export async function POST(request: NextRequest) {
 function extractSignatureFiles(formData: MembershipFormData) {
   const signatures = [];
 
-  // Extract member signature
   if (
     formData.memberSignature &&
     formData.memberSignature.startsWith("data:image/png;base64,")
@@ -132,7 +123,6 @@ function extractSignatureFiles(formData: MembershipFormData) {
     });
   }
 
-  // Extract guardian signature if it exists
   if (
     formData.isMinor &&
     formData.guardianSignature &&
@@ -151,20 +141,16 @@ function extractSignatureFiles(formData: MembershipFormData) {
 function extractIdFiles(formData: MembershipFormData) {
   const idFiles = [];
 
-  // Extract member ID file (for adults)
   if (!formData.isMinor && formData.memberIdFile) {
-    // Assume the ID file is already base64 encoded
-    let fileExtension = "jpg"; // default
+    let fileExtension = "jpg";
     let base64Content = formData.memberIdFile;
 
-    // If it's a data URL, extract the extension and content
     if (formData.memberIdFile.startsWith("data:")) {
       const matches = formData.memberIdFile.match(/data:([^;]+);base64,(.+)/);
       if (matches) {
         const mimeType = matches[1];
         base64Content = matches[2];
 
-        // Determine file extension from mime type
         if (mimeType.includes("jpeg") || mimeType.includes("jpg")) {
           fileExtension = "jpg";
         } else if (mimeType.includes("png")) {
@@ -181,19 +167,16 @@ function extractIdFiles(formData: MembershipFormData) {
     });
   }
 
-  // Extract guardian ID file (for minors)
   if (formData.isMinor && formData.guardianIdFile) {
-    let fileExtension = "jpg"; // default
+    let fileExtension = "jpg";
     let base64Content = formData.guardianIdFile;
 
-    // If it's a data URL, extract the extension and content
     if (formData.guardianIdFile.startsWith("data:")) {
       const matches = formData.guardianIdFile.match(/data:([^;]+);base64,(.+)/);
       if (matches) {
         const mimeType = matches[1];
         base64Content = matches[2];
 
-        // Determine file extension from mime type
         if (mimeType.includes("jpeg") || mimeType.includes("jpg")) {
           fileExtension = "jpg";
         } else if (mimeType.includes("png")) {
